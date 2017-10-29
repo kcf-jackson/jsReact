@@ -1,8 +1,12 @@
 #' Create a basic html file
 #' @export
 create_html <- function() {
-  c("<!DOCTYPE html>", "<html>", "<head>",
-    "</head>", "<body>", "</body>", "</html>\n")
+  data.frame(
+    xml = c("<!DOCTYPE html>", "<html>", "<head>",
+            "</head>", "<body>", "</body>", "</html>\n"),
+    levels = c(0, 1, 2, 2, 2, 2, 1),
+    stringsAsFactors = FALSE
+  )
 }
 
 
@@ -11,6 +15,6 @@ create_html <- function() {
 #' @param file Character string; the filepath.
 #' @export
 write_html_to_file <- function(my_html, file) {
-  cat(JS_(my_html), file = file)
+  cat(JS_(my_html$xml), file = file)
   print(paste0("File ", file, " has been created."))
 }

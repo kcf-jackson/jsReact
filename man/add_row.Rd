@@ -4,7 +4,7 @@
 \alias{add_row}
 \title{Add a section (div element) to body}
 \usage{
-add_row(my_html, id, align, content, after, before, insert = T)
+add_row(my_html, id, align, into = "<body>", insert = T)
 }
 \description{
 Add a section (div element) to body

@@ -10,9 +10,9 @@ my_html <- create_html() %>%
     </style>") %>%
   add_row(id = "row_1") %>%
   add_column(id = "column_1") %>%
-  add_title("Parameter domain", after = "column_1") %>%
+  add_title("Parameter domain", into = "column_1") %>%
   add_column(id = "column_2") %>%
-  add_div(id = "plotly_plot", after = "column_2")
+  add_div(id = "plotly_plot", into = "column_2")
 
 
 my_html %<>% add_script(

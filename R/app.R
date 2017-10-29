@@ -63,21 +63,3 @@ create_ws_url <- function(address) {
 html_to_string <- function(filepath, ...) {
   JS_(readLines(filepath))
 }
-
-
-#' Insert a websocket connection and convert html to string.
-#' @keywords internal
-insert_websockets <- function(filepath, wsUrl) {
-  my_html <- readLines(filepath)
-  wsUrl_line <- sprintf("var ws = new WebSocket(%s);", wsUrl)
-  has_script <- any(has_tag(my_html, "<script>"))
-  if (has_script) {
-    return(JS_(insert_after(wsUrl_line, "<script>", my_html)))
-  }
-  has_body <- any(has_tag(my_html, "</body>"))
-  if (has_body) {
-    wsUrl_line %<>% shiny::tags$script() %>% as.character()
-    return(JS_(insert_before(wsUrl_line, "</body>", my_html)))
-  }
-  stop("Your file doesn't contain a (standalone) <script> tag or a <body> tag.")
-}

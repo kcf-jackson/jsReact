@@ -4,7 +4,7 @@
 \alias{add_column}
 \title{Add a section (div element) to body}
 \usage{
-add_column(my_html, id, align, content, after, before, insert = T)
+add_column(my_html, id, align, into = "<body>", insert = T)
 }
 \description{
 Add a section (div element) to body

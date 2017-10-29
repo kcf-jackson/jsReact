@@ -4,7 +4,7 @@
 \alias{add_slider}
 \title{Add slider to body}
 \usage{
-add_slider(my_html, type, id, min, max, value, oninput, before, after)
+add_slider(my_html, type, id, min, max, value, oninput, into = "<body>")
 }
 \description{
 Add slider to body

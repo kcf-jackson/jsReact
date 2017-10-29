@@ -4,18 +4,12 @@ my_html <- create_html() %>%
   add_js_library("p5") %>%
   add_style(
     "<style type='text/css'>
-      .column { float:left; }
     </style>") %>%
-  add_column(
-    id = "column_1",
-    align = 'center',
-    content = "<b>KNN classification</b>"
-  ) %>%
-  add_div(
-    align = 'center',
-    content = "Click to create red dots. <br> Click with key pressed create green dots.",
-    before = "</div>"
-  )
+  add_column(id = "column_1", align = 'center') %>%
+  add_column(id = "column_2", align = 'center', into = "column_1") %>%
+  add_text("<b>KNN classification</b><br>", into = "column_2") %>%
+  add_text("Click to create red dots. <br> Click with key pressed create green dots.",
+           into = "column_2")
 my_html %<>% add_script(
 "<script>
   var data0 = {'x1': [], 'x2': [], 'y': []};

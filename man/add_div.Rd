@@ -4,7 +4,7 @@
 \alias{add_div}
 \title{Add a section (div element) to body}
 \usage{
-add_div(my_html, class, id, align, content, after, before, insert = T)
+add_div(my_html, class, id, align, into = "<body>", insert = T)
 }
 \description{
 Add a section (div element) to body

@@ -1,46 +1,19 @@
-insert_script <- function(script, after, before, my_html) {
-  has_before <- !missing(before)
-  has_after <- !missing(after)
-  if (has_before & has_after) {
-    res <- insert_after_and_before(script, after, before, my_html)
-  } else if (has_before) {
-    res <- insert_before(script, before, my_html)
-  } else if (has_after) {
-    res <- insert_after(script, after, my_html)
-  } else {
-    res <- insert_before(script, "</body>", my_html)
-  }
-  res
-}
-
-#' Insert a script before the tag of a vector of html string
+#' Insert a script into a tag of a html string
 #' @keywords internal
-insert_after_and_before <- function(script, after, before, my_html) {
-  ind <- get_tag_index(after, my_html)
-  ind2 <- get_tag_index(before, my_html, ind)
-  insert(script, my_html, ind2 - 1)
-}
-
-
-#' Insert a script before the tag of a vector of html string
-#' @keywords internal
-insert_before <- function(script, tag, my_html) {
-  ind <- get_tag_index(tag, my_html)
-  insert(script, my_html, ind - 1)
-}
-
-
-#' Insert a script after the tag of a vector of a html string
-#' @keywords internal
-insert_after <- function(script, tag, my_html) {
-  ind <- get_tag_index(tag, my_html)
-  insert(script, my_html, ind)
+insert_into <- function(my_html, script, into) {
+  index <- get_tag_index(my_html$xml, into)
+  my_level <- my_html$levels[index]
+  index_2 <- get_tag_index(tail(my_html$levels, -index), my_level)
+  insert_df(
+    data.frame(xml = script, levels = my_level + 1, stringsAsFactors = F),
+    my_html, index + index_2 - 1
+  )
 }
 
 
 #' Get the first index of a tag in a vector of a html string
 #' @keywords internal
-get_tag_index <- function(tag, my_html, after = 0) {
+get_tag_index <- function(my_html, tag, after = 0) {
   tag_exist <- has_tag(my_html, tag)
   if (!any(tag_exist)) {
     stop(paste0("Cannot find tag '", tag, "' in the file."))
@@ -68,13 +41,3 @@ JS_ <- function(...){
   x <- c(...)
   paste(x, collapse = "\n")
 }
-
-
-#' #' Append JS file to curret JS file
-#' #' @keywords internal
-#' js_append <- function(js, to_append){
-#'   tokens <- unlist(strsplit(js, "\n"))
-#'   end <- tokens[length(tokens)]
-#'   tokens[length(tokens)] <- to_append
-#'   JS_(c(tokens, end))
-#' }

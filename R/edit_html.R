@@ -8,7 +8,7 @@ add_js_library <- function(my_html, js_libs) {
   src <- js_src()
   for (i in js_libs) {
     if (i %in% names(src)) {
-      my_html %<>% insert_before(src[[i]], "</head>", .)
+      my_html %<>% insert_into(src[[i]], "<head>")
     }
   }
   my_html
@@ -21,7 +21,7 @@ add_js_library <- function(my_html, js_libs) {
 #' @export
 add_header_title <- function(my_html, title) {
   my_title <- sprintf("<title> %s <title>", title)
-  insert_before(my_title, "</head>", my_html)
+  my_html %<>% insert_into(my_title, "<head>")
 }
 
 
@@ -30,7 +30,7 @@ add_header_title <- function(my_html, title) {
 #' @param str0 character string; css style.
 #' @export
 add_style <- function(my_html, str0) {
-  insert_before(str0, "</head>", my_html)
+  my_html %<>% insert_into(str0, "<head>")
 }
 
 
@@ -40,24 +40,23 @@ add_style <- function(my_html, str0) {
 #' @export
 add_style_from_file <- function(my_html, file) {
   my_css <- JS_(readLines(file))
-  insert_before(my_css, "</head>", my_html)
+  my_html %<>% insert_into(my_css, "<head>")
 }
 
 
 #=============== Functions to add things to body ===============
 #' Add title to body
 #' @export
-add_title <- function(my_html, title, size = 3,
-                      after, before) {
+add_title <- function(my_html, title, size = 3, into = "<body>") {
   my_title <- sprintf("<h%s>%s</h%s>", size, title, size)
-  insert_script(my_title, after, before, my_html)
+  my_html %<>% insert_into(my_title, into)
 }
 
 
 #' Add a section (div element) to body
 #' @export
-add_div <- function(my_html, class, id, align, content,
-                    after, before, insert = T) {
+add_div <- function(my_html, class, id, align, into = "<body>",
+                    insert = T) {
   str0 <- "<div"
   if (!missing(class))
     str0 %<>% paste0(sprintf(" class='%s'", class))
@@ -66,11 +65,9 @@ add_div <- function(my_html, class, id, align, content,
   if (!missing(align))
     str0 %<>% paste0(sprintf(" align='%s'", align))
   str0 %<>% paste0(">")
-  if (!missing(content))
-    str0 %<>% c(content)
   str0 %<>% c("</div>")
   if (!insert) return(str0)
-  insert_script(str0, after, before, my_html)
+  my_html %<>% insert_into(str0, into)
 }
 
 
@@ -87,7 +84,7 @@ add_row <- curry::partial(add_div, list(class = "row"))
 #' Add Javascript to body
 #' @export
 add_script <- function(my_html, script) {
-  insert_before(script, "</body>", my_html)
+  my_html %<>% insert_into(script, "<body>")
 }
 
 
@@ -102,7 +99,7 @@ add_script_from_file <- function(my_html, file) {
 #' @note This function is created using the factory function.
 #' @export
 add_slider <- function(my_html, type, id, min, max, value, oninput,
-                       before, after) {
+                       into = "<body>") {
   str0 <- "<input"
   if (!missing(type)) {
     str0 %<>% paste0(sprintf(" type='%s'", type))
@@ -123,19 +120,14 @@ add_slider <- function(my_html, type, id, min, max, value, oninput,
     str0 %<>% paste0(sprintf(" oninput='%s'", oninput))
   }
   str0 %<>% paste0(">")
-  insert_script(str0, after, before, my_html)
+  my_html %<>% insert_into(str0, into)
 }
 
 
-#' #' Add anything by id
-#' #' @export
-#' add_anything_to_id <- function(thing, id) {
-#'
-#' }
-
-
-#' #' Add a form to body
-#' #' @export
-#' add_form <- function(file, tag) {
-#'
-#' }
+#' Add text
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @param text character string; text to be added.
+#' @export
+add_text <- function(my_html, text, into = "<body>") {
+  my_html %<>% insert_into(text, into)
+}

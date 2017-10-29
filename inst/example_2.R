@@ -28,6 +28,6 @@ my_html %<>% add_script("
 my_r_fun <- function(msg) {
   list(x = rnorm(1), y = as.numeric(msg))
 }
-cat(my_html, file = "inst/sample.html")
+write_html_to_file(my_html, file = "inst/sample.html")
 my_app <- create_app("inst/sample.html", user_function = my_r_fun)
 start_app(my_app)
