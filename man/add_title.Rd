@@ -4,7 +4,7 @@
 \alias{add_title}
 \title{Add title to body}
 \usage{
-add_title(my_html, title, size = 3)
+add_title(my_html, title, size = 3, after, before)
 }
 \description{
 Add title to body

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+    <style type="text/css">
+    body { font-family: Helvetica; }
+    pre { margin: 0 }
+    .column {
+      float: left;
+    }
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+    .custom {
+      margin-top: 0cm;
+    }
+    </style>
+  </head>
+  <body>
+    <script>
+      // Setup Canvas
+      var canvas_width = 400;
+      var canvas_height = 400;
+      function setup() {
+        frameRate(15);
+        var my_canvas = createCanvas(canvas_width, canvas_height);
+        my_canvas.parent('p5canvas');
+        rect(0, 0, canvas_width-1, canvas_height-1);
+      }
+      
+      var data0 = {'x1': [], 'x2': [], 'y': []};
+      var grid_data = {'x1': [], 'x2': [], 'y': []};
+      ws.onmessage = function(msg) {
+        grid_data = JSON.parse(msg.data);
+      }
+      function plot_data() {
+        var n = data0['x1'].length;
+        for (var i = 0; i < n; i++) {
+          if (data0['y'][i] == 1) {
+            fill(0, 255, 0)
+          } else {
+            fill(255, 0, 0)
+          }
+          ellipse(data0['x1'][i], data0['x2'][i], 10, 10)
+        }
+      }
+      function plot_grid() {
+        var n = grid_data['x1'].length;
+        for (var i = 0; i < n; i++) {
+          if (grid_data['y'][i] == 1) {
+            fill(0, 255, 0)
+          } else {
+            fill(255, 0, 0)
+          }
+          rect(grid_data['x1'][i], grid_data['x2'][i], 20, 20)
+        }
+      }
+      function draw() {
+        plot_grid()
+        plot_data()
+      }
+      function mouseClicked() {
+      	  fill(255)
+      	  rect(0, 0, canvas_width-1, canvas_height-1);
+      	  ellipse(mouseX, mouseY, 10, 10);
+      	  data0['x1'].push(mouseX);
+      	  data0['x2'].push(mouseY);
+      	  if (keyIsPressed === true) {
+      	    data0['y'].push(1);  
+      	  } else {
+      	    data0['y'].push(0);
+      	  }
+      	  ws.send(JSON.stringify(data0));
+      	}
+    </script>
+    <div class = 'row'>
+      <div class = 'column' id='p5canvas'>
+        <div class = 'custom' align='center'> <b>Canvas for logistic regression</b></div>
+        <div class = 'custom' align='center'> Click to create red dots. <br> Click with any key pressed to create green dots.</div>
+      </div>
+      <div class = 'column' id="myDiv"><!-- Plotly chart --></div>
+    </div>
+  </body>
+</html>

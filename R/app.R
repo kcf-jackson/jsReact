@@ -74,10 +74,10 @@ insert_websockets <- function(filepath, wsUrl) {
   if (has_script) {
     return(JS_(insert_after(wsUrl_line, "<script>", my_html)))
   }
-  has_body <- any(has_tag(my_html, "<body>"))
+  has_body <- any(has_tag(my_html, "</body>"))
   if (has_body) {
     wsUrl_line %<>% shiny::tags$script() %>% as.character()
-    return(JS_(insert_after(wsUrl_line, "<body>", my_html)))
+    return(JS_(insert_before(wsUrl_line, "</body>", my_html)))
   }
   stop("Your file doesn't contain a (standalone) <script> tag or a <body> tag.")
 }

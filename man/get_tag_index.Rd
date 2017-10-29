@@ -4,7 +4,7 @@
 \alias{get_tag_index}
 \title{Get the first index of a tag in a vector of a html string}
 \usage{
-get_tag_index(tag, my_html)
+get_tag_index(tag, my_html, after = 0)
 }
 \description{
 Get the first index of a tag in a vector of a html string

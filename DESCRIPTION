@@ -15,4 +15,5 @@ Imports:
     httpuv,
     magrittr,
     utils,
-    assertthat
+    assertthat,
+    curry
