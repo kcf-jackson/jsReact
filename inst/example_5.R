@@ -27,6 +27,19 @@ my_html %<>% add_style(
       display: flex;
       flex-direction: column;
       padding-top: 1.1em;
+      padding-left: 1.1em;
+    }
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+    }
+    table {
+      border-collapse: collapse;
+      border: 1px solid black
+    }
+    #result_table {
+      padding-bottom: 8px;
     }")
 
 my_html %<>%
