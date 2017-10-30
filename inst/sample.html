@@ -273,14 +273,29 @@ function update_grid(value) {
   var nx = nearest_id(mouseX);
   var ny = nearest_id(mouseY);
   var mod_index = nx * 28 + ny;
-  if ((nx <= 27) & (ny <= 27)) {
-    grid_data.y[mod_index] = value;
-    if (value == 1) {
-      fill(255, 255, 255);
-    } else {
-      fill(196, 218, 255);
+  // implementing brush
+  var update_data = {nx: [], ny: [], mod_index: []};
+  var neighbor = 1;
+  for (var i = -neighbor; i <= neighbor; i++) {
+    var bdy = neighbor - Math.abs(i);
+    for (var j = -bdy; j <= bdy; j++) {
+      update_data.nx.push(nx + i);
+      update_data.ny.push(ny + j);
+      update_data.mod_index.push((nx + i) * 28 + (ny + j));
     }
-    rect(grid_data.x1[mod_index], grid_data.x2[mod_index], 15, 15);
+  }
+  console.log(update_data);
+  for (var k = 0; k < update_data.nx.length; k++) {
+    var mi = update_data.mod_index[k];
+    if ((update_data.nx[k] <= 27) & (update_data.ny[k] <= 27)) {
+      grid_data.y[mi] = value;
+      if (grid_data.y[mi] == 1) {
+        fill(255, 255, 255);
+      } else {
+        fill(196, 218, 255);
+      }
+      rect(grid_data.x1[mi], grid_data.x2[mi], 15, 15);
+    }
   }
 }
 </script>

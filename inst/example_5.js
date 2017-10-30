@@ -69,16 +69,9 @@ function update_grid(value) {
   for (var k = 0; k < update_data.nx.length; k++) {
     var mi = update_data.mod_index[k];
     if ((update_data.nx[k] <= 27) & (update_data.ny[k] <= 27)) {
-      // Implement brush depth
-      if ((update_data.nx[k] == nx) & (update_data.nx[k] == nx)) {
-        grid_data.y[mi] += value;
-      } else {
-        grid_data.y[mi] += value * 0.95;
-      }
-      grid_data.y[mi] = Math.min(grid_data.y[mi], 1);
-      if (grid_data.y[mi] !== 0) {
-        var color = 255 * grid_data.y[mi];
-        fill(color, color, color);
+      grid_data.y[mi] = value;
+      if (grid_data.y[mi] == 1) {
+        fill(255, 255, 255);
       } else {
         fill(196, 218, 255);
       }
