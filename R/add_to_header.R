@@ -62,3 +62,13 @@ add_style_from_file <- function(my_html, file) {
   my_css <- JS_(readLines(file))
   add_style(my_html, my_css)
 }
+
+
+#' Add css style to html header
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @param link character string; external link to the css file.
+#' @export
+add_style_from_link <- function(my_html, link) {
+  my_css <- sprintf("<link rel='stylesheet' href=%s>", link)
+  insert_into(my_html, my_css, "<head>")
+}
