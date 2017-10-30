@@ -30,7 +30,8 @@ Drag to draw. Drag with key pressed to erase.
 <button onclick = 'plot_grid()'>Clear</button>
 </div>
 </div>
-<script>//R.js
+<script>
+//R.js
 function seq(from = 1, to, by = 1, length_out) {
   if (by && length_out) {
     throw("Too many arguments. You can only specify one of the third and the fourth argument.");
@@ -199,9 +200,11 @@ function matrix(x, n, m, byrow = false) {
 
 function rev(x) {
   return x.reverse();
-}</script>
+}
+</script>
 
-<script>// Helper functions
+<script>
+// Helper functions
 function uniform_grid(min, max, resolution) {
   var x1 = seq(min, max, null, resolution);
   var grid_data = {'x1': [], 'x2': [], 'y': []};
@@ -266,7 +269,8 @@ function update_grid(value) {
     }
     rect(grid_data.x1[mod_index], grid_data.x2[mod_index], 15, 15);
   }
-}</script>
+}
+</script>
 
 </body>
 </html>

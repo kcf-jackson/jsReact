@@ -10,7 +10,6 @@ my_html <- create_html() %>%
   add_div(id = "output") %>%
   add_div(id = "plotly_plot")
 my_html %<>% add_script("
-  <script>
   function show_value() {
     var input = document.getElementById('slide_input');
     ws.send(input.value);
@@ -24,7 +23,6 @@ my_html %<>% add_script("
     var layout = {xaxis:{range: [-10, 10]}, yaxis: {range: [-20, 120]}};
     Plotly.newPlot('plotly_plot', [trace1], layout);
   }
-  </script>
 ")
 my_r_fun <- function(msg) {
   list(x = rnorm(1), y = as.numeric(msg))

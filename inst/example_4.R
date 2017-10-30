@@ -8,8 +8,7 @@ my_html <- create_html() %>%
   add_text("Click to create red dots. <br> Click with key pressed create green dots.",
            into = "column_2")
 my_html %<>% add_script(
-"<script>
-  var data0 = {'x1': [], 'x2': [], 'y': []};
+" var data0 = {'x1': [], 'x2': [], 'y': []};
   var grid_data = {'x1': [], 'x2': [], 'y': []};
   ws.onmessage = function(msg) {
     grid_data = JSON.parse(msg.data);
@@ -51,7 +50,7 @@ my_html %<>% add_script(
     }
     ws.send(JSON.stringify(data0));
   }
-</script>")
+")
 write_html_to_file(my_html, "inst/sample.html")
 
 

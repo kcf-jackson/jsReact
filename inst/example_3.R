@@ -14,8 +14,7 @@ my_html <- create_html() %>%
 
 
 my_html %<>% add_script(
-"<script>
-  ws.onmessage = function(msg) {
+ "ws.onmessage = function(msg) {
     var data0 = JSON.parse(msg.data);
     var trace1 = {
       x: data0['x'], y: data0['y'],
@@ -28,9 +27,8 @@ my_html %<>% add_script(
     };
     Plotly.newPlot('plotly_plot', [trace1], layout);
   }
-</script>") %>% add_script(
-"<script>
-  var canvas_width = canvas_height = 200
+") %>% add_script(
+ "var canvas_width = canvas_height = 200
   function setup() {
     var my_canvas = createCanvas(canvas_width, canvas_height);
     my_canvas.parent('column_1');
@@ -54,8 +52,7 @@ my_html %<>% add_script(
       'y': map(mouseY, canvas_height, 0, -1, 1)
     };
     ws.send(JSON.stringify(json_msg_to_r));
-  }
-</script>")
+  }")
 
 
 my_r_fun <- function(msg) {
