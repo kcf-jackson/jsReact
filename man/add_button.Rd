@@ -6,6 +6,15 @@
 \usage{
 add_button(my_html, into = "<body>", text = "", ...)
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
+
+\item{text}{character string; the display text on the button}
+
+\item{...}{Extra parameter that goes into a tag, e.g. In <div type = "xxx">, 'type = "xxx"' goes to ... .}
+}
 \description{
 Add slider to body
 }

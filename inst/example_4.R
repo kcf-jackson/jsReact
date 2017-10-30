@@ -1,5 +1,6 @@
 rm(list = ls())
 library(jsReact)
+library(magrittr)
 my_html <- create_html() %>%
   add_js_library("p5") %>%
   add_column(id = "column_1", align = 'center') %>%
@@ -55,7 +56,7 @@ write_html_to_file(my_html, "inst/sample.html")
 
 
 my_r_fun <- function(in_msg) {
-  grid_data <- make_uniform_grid(0, 400, 20)  # this is a 'constant' df
+  grid_data <- make_uniform_grid(0, 400, 20)  # this is a 'constant' df. Inefficient but easy to do.
   train_data <- data.frame(x1 = in_msg$x1, x2 = in_msg$x2, y = in_msg$y)
   # Refit models
   knn_pred <- class::knn(

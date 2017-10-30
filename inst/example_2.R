@@ -1,6 +1,7 @@
 #Example 2
 rm(list = ls())
 library(jsReact)
+library(magrittr)
 my_html <- create_html() %>%
   add_js_library("plotly") %>%
   add_title("Send message") %>%

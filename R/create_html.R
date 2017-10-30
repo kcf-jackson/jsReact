@@ -11,7 +11,7 @@ create_html <- function() {
 
 
 #' Convert html to string
-#' @param str0 A vector of strings; output from 'create_html'.
+#' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param file Character string; the filepath.
 #' @export
 write_html_to_file <- function(my_html, file) {

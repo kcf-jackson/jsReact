@@ -10,6 +10,8 @@ add_text(my_html, text, into = "<body>")
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
 
 \item{text}{character string; text to be added.}
+
+\item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
 }
 \description{
 Add text

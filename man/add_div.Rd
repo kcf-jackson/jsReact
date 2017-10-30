@@ -6,6 +6,17 @@
 \usage{
 add_div(my_html, class, id, align, into = "<body>")
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{class}{character string; class name (optional)}
+
+\item{id}{character string; id name (optional)}
+
+\item{align}{character string; 'left', 'center', 'right'. (optional)}
+
+\item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
+}
 \description{
 Add a section (div element) to body
 }

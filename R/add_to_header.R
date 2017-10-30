@@ -14,7 +14,7 @@
 
 #' Add js libraries src files to html header
 #' @param my_html html in a vector of strings; output from 'create_html'.
-#' @param jslibs A vector of strings; JS libraries to use. Currently support
+#' @param js_libs A vector of strings; JS libraries to use. Currently support
 #' 'plotly', 'p5', 'd3', 'vega'.
 #' @export
 add_js_library <- function(my_html, js_libs) {

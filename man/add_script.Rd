@@ -6,6 +6,11 @@
 \usage{
 add_script(my_html, script)
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{script}{character string; script to add.}
+}
 \description{
 Add Javascript to body
 }

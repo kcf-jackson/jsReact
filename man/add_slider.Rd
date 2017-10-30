@@ -6,6 +6,13 @@
 \usage{
 add_slider(my_html, into = "<body>", ...)
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
+
+\item{...}{Extra parameter that goes into a tag, e.g. In <div type = "xxx">, 'type = "xxx"' goes to ... .}
+}
 \description{
 Add slider to body
 }

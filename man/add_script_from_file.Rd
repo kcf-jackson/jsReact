@@ -6,6 +6,11 @@
 \usage{
 add_script_from_file(my_html, file)
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{file}{filepath to the JS file}
+}
 \description{
 Add Javascript from file to body
 }

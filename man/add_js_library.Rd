@@ -9,7 +9,7 @@ add_js_library(my_html, js_libs)
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
 
-\item{jslibs}{A vector of strings; JS libraries to use. Currently support
+\item{js_libs}{A vector of strings; JS libraries to use. Currently support
 'plotly', 'p5', 'd3', 'vega'.}
 }
 \description{

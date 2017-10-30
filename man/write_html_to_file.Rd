@@ -7,9 +7,9 @@
 write_html_to_file(my_html, file)
 }
 \arguments{
-\item{file}{Character string; the filepath.}
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
 
-\item{str0}{A vector of strings; output from 'create_html'.}
+\item{file}{Character string; the filepath.}
 }
 \description{
 Convert html to string
