@@ -16,8 +16,9 @@ function nearest_id(coord) {
 var pred_data = {'class': [], 'prob': []};
 var grid_data = uniform_grid(0, 420 - 15, 28);
 ws.onmessage = function(msg) {
-  var in_msg = JSON.parse(msg.data);
-  pred_data = in_msg.pred;
+  var in_msg = JSON.parse(msg.data).table;
+  document.getElementById("result_table").innerHTML = in_msg;
+  //pred_data = in_msg.pred;
 };
 function mouseReleased() {
   ws.send(JSON.stringify(grid_data.y));
@@ -32,13 +33,9 @@ function setup() {
   plot_grid();
 }
 function plot_grid() {
-  var n = grid_data.x1.length;
-  for (var i = 0; i < n; i++) {
-    if (grid_data.y[i] == 1) {
-      fill(255, 255, 255);
-    } else {
-      fill(196, 218, 255);
-    }
+  grid_data = uniform_grid(0, 420 - 15, 28);
+  for (var i = 0; i < grid_data.y.length; i++) {
+    fill(196, 218, 255);
     rect(grid_data.x1[i], grid_data.x2[i], 15, 15);
   }
 }

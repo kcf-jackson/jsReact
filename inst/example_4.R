@@ -2,9 +2,6 @@ rm(list = ls())
 library(jsReact)
 my_html <- create_html() %>%
   add_js_library("p5") %>%
-  add_style(
-    "<style type='text/css'>
-    </style>") %>%
   add_column(id = "column_1", align = 'center') %>%
   add_column(id = "column_2", align = 'center', into = "column_1") %>%
   add_text("<b>KNN classification</b><br>", into = "column_2") %>%

@@ -4,7 +4,8 @@ library(jsReact)
 library(magrittr)
 my_html <- create_html() %>%
   add_title("Send message") %>%
-  add_slider("range", "slide_input", "0", "100", oninput = "show_value(this.Value)") %>%
+  add_slider(type = "range", id = "slide_input", min = "0", max = "100",
+             oninput = "show_value(this.Value)") %>%
   add_title("Receive message") %>%
   add_div(id = "output")
 my_html %<>% add_script(

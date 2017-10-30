@@ -5,27 +5,56 @@ library(glmnet)
 
 my_html <- create_html() %>%
   add_js_library("p5") %>%
-  # add_style("<style> .column#column_2 { max-width: 50%; } </style>") %>%
-  add_row(id = "row_1") %>%
-  add_column(id = "column_1", into = "row_1") %>%
-  add_column(id = "column_2", align = 'center', into = "column_1") %>%
-  add_text("<b>Digits recognition</b><br>", into = "column_2") %>%
-  add_text("Drag to draw. Drag with key pressed to erase.", into = "column_2") %>%
-  add_column(id = "column_2", into = "row_1")
+  add_title("Digits recognition with GLM") %>%
+  add_container(id = "row_1") %>%
+    add_container(id = "column_1", into = "row_1") %>%
+      add_item(id = "text_item", align = 'left', into = "column_1") %>%
+      add_text("Drag to draw. Drag with key pressed to erase.", into = "text_item") %>%
+    add_container(id = "column_2", into = "row_1") %>%
+      add_item(id = "result_table", into = "column_2") %>%
+      add_button(into = "column_2", text = "Clear", onclick = "plot_grid()")
+
+my_html %<>% add_style(
+  ".container#row_1 {
+      display: flex;
+      flex-direction: row
+    }
+    .container#column_1 {
+      display: flex;
+      flex-direction: column;
+    }
+    .container#column_2 {
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.1em;
+    }")
+
 my_html %<>%
   add_script_from_file("inst/R.js") %>%
   add_script_from_file("inst/example_5.js")
 write_html_to_file(my_html, file = "inst/sample.html")
 
 
+# Use this if you want to see your own handwriting in R plot.
+show_digit <- function(arr784, col=gray(12:1/12), ...) {
+  image(matrix(arr784, nrow=28)[,28:1], col=col, ...)
+}
+# This function rearranges the pixel to align with the training data
+reshuffle <- function(vec0) {
+  vec0 <- as.numeric(vec0)
+  as.numeric(matrix(vec0, 28, 28, byrow = T))
+}
+
 load("inst/fitted_glmnet", verbose = T)
 r_fun <- function(msg) {
-  msg <- matrix(as.numeric(msg), 28, 28, byrow = F)
-  new_data <- t(data.frame(as.numeric(msg) * 255))
-  print(new_data)
-  pred <- predict(cv, new_data, type = 'response')
-  print(pred)
-  list(class = 0:9, pred = as.numeric(pred))
+  msg <- reshuffle(msg) * 255
+  # show_digit(msg)
+  pred <- predict(cv, t(data.frame(msg)), type = 'response')
+  #list(class = 0:9, pred = as.numeric(pred))  #use this if you want to process on the JS side
+  list('table' = print(
+    xtable::xtable(data.frame(class = 0:9, pred = as.numeric(pred))),
+    type = 'html', print.results = F, include.rownames = F
+  ))
 }
 
 

@@ -4,10 +4,8 @@ library(magrittr)
 my_html <- create_html() %>%
   add_js_library(c("plotly", "p5")) %>%
   add_style(
-    "<style type='text/css'>
-      .column { float:left; }
-      h3 { margin-top: 2cm; }
-    </style>") %>%
+    ".column { float:left; }
+      h3 { margin-top: 2cm; }") %>%
   add_row(id = "row_1") %>%
   add_column(id = "column_1") %>%
   add_title("Parameter domain", into = "column_1") %>%
@@ -59,6 +57,7 @@ my_html %<>% add_script(
   }
 </script>")
 
+
 my_r_fun <- function(msg) {
   beta_1 <- msg$x * 10
   beta_2 <- msg$y
@@ -66,6 +65,7 @@ my_r_fun <- function(msg) {
   y <- boot::inv.logit(beta_1 + beta_2 * x)
   list(x = x, y = y)
 }
+
 
 write_html_to_file(my_html, "inst/sample.html")
 my_app <- create_app("inst/sample.html", my_r_fun)

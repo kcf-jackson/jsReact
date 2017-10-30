@@ -2,16 +2,32 @@
 <html>
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.16/p5.js"></script>
+<style> .container#row_1 {
+      display: flex;
+      flex-direction: row
+    }
+    .container#column_1 {
+      display: flex;
+      flex-direction: column;
+    }
+    .container#column_2 {
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.1em;
+    } </style>
 </head>
 <body>
-<div class='row' id='row_1'>
-<div class='column' id='column_1'>
-<div class='column' id='column_2' align='center'>
-<b>Digits recognition</b><br>
+<h3>Digits recognition with GLM</h3>
+<div class='container' id='row_1'>
+<div class='container' id='column_1'>
+<div class='item' id='text_item' align='left'>
 Drag to draw. Drag with key pressed to erase.
 </div>
 </div>
-<div class='column' id='column_2'>
+<div class='container' id='column_2'>
+<div class='item' id='result_table'>
+</div>
+<button onclick = 'plot_grid()'>Clear</button>
 </div>
 </div>
 <script>//R.js
@@ -203,8 +219,9 @@ function nearest_id(coord) {
 var pred_data = {'class': [], 'prob': []};
 var grid_data = uniform_grid(0, 420 - 15, 28);
 ws.onmessage = function(msg) {
-  var in_msg = JSON.parse(msg.data);
-  pred_data = in_msg.pred;
+  var in_msg = JSON.parse(msg.data).table;
+  document.getElementById("result_table").innerHTML = in_msg;
+  //pred_data = in_msg.pred;
 };
 function mouseReleased() {
   ws.send(JSON.stringify(grid_data.y));
@@ -219,13 +236,9 @@ function setup() {
   plot_grid();
 }
 function plot_grid() {
-  var n = grid_data.x1.length;
-  for (var i = 0; i < n; i++) {
-    if (grid_data.y[i] == 1) {
-      fill(255, 255, 255);
-    } else {
-      fill(196, 218, 255);
-    }
+  grid_data = uniform_grid(0, 420 - 15, 28);
+  for (var i = 0; i < grid_data.y.length; i++) {
+    fill(196, 218, 255);
     rect(grid_data.x1[i], grid_data.x2[i], 15, 15);
   }
 }
