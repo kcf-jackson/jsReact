@@ -6,6 +6,15 @@
 \usage{
 add_tag_into(my_html, script, tag, into)
 }
+\arguments{
+\item{my_html}{html in a vector of strings; output from 'create_html'.}
+
+\item{script}{character string; script to add.}
+
+\item{tag}{character string; html tags, e.g. div, span, script, style, h3.}
+
+\item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
+}
 \description{
 Generic function to add a pair of enclosing "tags" to "script", then insert into "into" of "my_html"
 }

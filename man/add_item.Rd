@@ -4,7 +4,7 @@
 \alias{add_item}
 \title{Add a item (div element) to body}
 \usage{
-add_item(my_html, id, align, into = "<body>", insert = T)
+add_item(my_html, id, align, into = "<body>")
 }
 \description{
 Add a item (div element) to body

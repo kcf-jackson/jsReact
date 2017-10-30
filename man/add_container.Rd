@@ -4,7 +4,7 @@
 \alias{add_container}
 \title{Add a container (div element) to body}
 \usage{
-add_container(my_html, id, align, into = "<body>", insert = T)
+add_container(my_html, id, align, into = "<body>")
 }
 \description{
 Add a container (div element) to body
