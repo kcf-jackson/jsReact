@@ -2,7 +2,7 @@
 #' @name import_functions
 #' @keywords internal
 #' @importFrom magrittr %>% %<>%
-#' @importFrom utils browseURL, tail
+#' @importFrom utils browseURL tail
 NULL
 
 utils::globalVariables(".")

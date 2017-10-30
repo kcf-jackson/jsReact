@@ -91,7 +91,9 @@ add_script <- function(my_html, script) {
 #' Add Javascript from file to body
 #' @export
 add_script_from_file <- function(my_html, file) {
-  add_script(my_html, html_to_string(file))
+  add_script(
+    my_html, paste0("<script>", html_to_string(file), "</script>\n")
+  )
 }
 
 
