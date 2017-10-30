@@ -5,3 +5,5 @@
 #' @importFrom utils browseURL tail
 
 utils::globalVariables(".")
+utils::globalVariables("add_div", "jsReact")
+utils::globalVariables("add_tag_into", "jsReact")
