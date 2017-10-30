@@ -29,6 +29,10 @@ add_js_library <- function(my_html, js_libs) {
 
 
 #' Generic function to add a pair of enclosing "tags" to "script", then insert into "into" of "my_html"
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @param script character string; script to add.
+#' @param tag character string; html tags, e.g. div, span, script, style, h3.
+#' @param into character string; unique identifier of a line in the html. Element id is highly recommended.
 #' @export
 add_tag_into <- function(my_html, script, tag, into) {
   script_with_tags <- sprintf("<%s> %s </%s>", tag, script, tag)

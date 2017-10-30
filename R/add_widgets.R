@@ -11,7 +11,6 @@ add_button <- function(my_html, into = "<body>", text = "", ...) {
 #' @export
 add_slider <- function(my_html, into = "<body>", ...) {
   script <- add_widget("input", ...)[1]
-  print(script)
   my_html %<>% insert_into(script, into)
 }
 
