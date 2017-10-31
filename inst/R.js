@@ -1,17 +1,23 @@
 //R.js
-function seq(from = 1, to, by = 1, length_out) {
+function seq(from, to, by, length_out) {
   if (by && length_out) {
     throw("Too many arguments. You can only specify one of the third and the fourth argument.");
   }
   var res = [];
+  if (!from) {
+    from = 1;
+  }
   if (!to) {
     to = from;
     from = 1;
   }
+  if (!by) {
+    by = 1;
+  }
   if (length_out) {
     by = (to - from) / (length_out - 1);
   }
-  for (var i = from; i <= to; i = i + by) {
+  for (var i = from; i - to <= 1e-8; i = i + by) {
     res.push(i);
   }
   return res;
