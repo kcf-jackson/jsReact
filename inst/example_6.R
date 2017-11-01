@@ -1,4 +1,7 @@
-# Stroke-based handwriting recognition
+# Example 6. This example explores the use of multiple canvas with p5.js.
+# Stroke-based handwriting recognition. This app is inspired by:
+# https://jackschaedler.github.io/handwriting-recognition/ and
+# https://distill.pub/2016/handwriting/
 rm(list = ls())
 library(jsReact)
 library(magrittr)

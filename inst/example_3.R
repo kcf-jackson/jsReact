@@ -1,3 +1,4 @@
+# Example 3. Explore R-JS interaction with p5.js and plotly.js.
 rm(list = ls())
 library(jsReact)
 library(magrittr)

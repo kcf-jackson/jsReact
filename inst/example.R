@@ -1,9 +1,9 @@
-#Example 1
+# Example 1. This file explores the basic mechanism for R and JS to interact.
 rm(list = ls())
 library(jsReact)
 library(magrittr)
 my_html <- create_html() %>%
-  add_title("Send message") %>%
+  add_title("Send message") %>%i
   add_slider(type = "range", id = "slide_input", min = "0", max = "100",
              oninput = "show_value(this.Value)") %>%
   add_title("Receive message") %>%

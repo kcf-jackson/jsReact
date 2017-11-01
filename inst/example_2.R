@@ -1,4 +1,4 @@
-#Example 2
+# Example 2. Explore R-JS interaction with plotly.js.
 rm(list = ls())
 library(jsReact)
 library(magrittr)

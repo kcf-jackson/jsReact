@@ -1,3 +1,6 @@
+# Example 4. Get familiar with the common visual tasks in JS (p5.js) and
+# leverage R's modelling ability (KNN classification). This app is inspired by
+# http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html
 rm(list = ls())
 library(jsReact)
 library(magrittr)

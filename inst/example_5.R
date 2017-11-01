@@ -1,3 +1,5 @@
+# Example 5. Get familiar with the common visual tasks in JS (p5.js) and
+# leverage R's modelling ability (GLM).
 rm(list = ls())
 library(jsReact)
 library(magrittr)
