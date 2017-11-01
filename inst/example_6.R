@@ -15,6 +15,7 @@ my_html <- create_html() %>%
   add_container(id = "row_2") %>%
     add_item(id = "db_2", into = "row_2") %>%
     add_item(id = "ctl_2", into = "row_2") %>%
+      add_text("Smoothing parameter:", into = "ctl_2") %>%
       add_slider(into = "ctl_2", type = "range", id = "smoothing_input",
                  min = "0.0", max = "1.0", step = "0.01", value = "0",
                  oninput = "slider_smooth(value)") %>%
@@ -22,31 +23,16 @@ my_html <- create_html() %>%
   add_container(id = "row_3") %>%
     add_item(id = "db_3", into = "row_3") %>%
     add_item(id = "ctl_3", into = "row_3") %>%
+      add_text("Thinning parameter:", into = "ctl_3") %>%
       add_slider(into = "ctl_3", type = "range", id = "thinning_input",
                  min = "0", max = "40", value = "0",
                  oninput = "slider_thin(value)")
 
 
-my_html %<>% add_style(
-  ".container#row_1 {
-      display: flex;
-      flex-direction: row
-    }
-    .container#column_1 {
-      display: flex;
-      flex-direction: column;
-    }
-    .container#column_2 {
-      display: flex;
-      flex-direction: column;
-      padding-top: 1.1em;
-    }
-    .container#column_3 {
-      display: flex;
-      flex-direction: column;
-      padding-top: 1.1em;
-    }
-    ")
+my_html %<>% add_style("
+  #ctl_1, #ctl_2, #ctl_3 {
+    padding-bottom: 8px;
+  }")
 
 my_html %<>%
   # add_script_from_file("inst/p5.js") %>%
