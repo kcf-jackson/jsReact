@@ -6,18 +6,26 @@ library(magrittr)
 my_html <- create_html() %>%
   add_js_library("p5") %>%
   add_title("Stroke-based handwriting system") %>%
+
   add_container(id = "row_1") %>%
-    add_container(id = "column_1") %>%
-      add_item(id = "drawing_box", into = "column_1") %>%
-      add_item(id = "others", into = "column_1") %>%
-      add_button(into = "others", text = "Clear", onclick = "clear_canvas()") %>%
-      add_slider(into = "others", type = "range", id = "smoothing_input",
+    add_item(id = "db", into = "row_1") %>%
+    add_item(id = "ctl_1", into = "row_1") %>%
+      add_button(into = "ctl_1", text = "Clear", onclick = "clear_everything()") %>%
+
+  add_container(id = "row_2") %>%
+    add_item(id = "db_2", into = "row_2") %>%
+    add_item(id = "ctl_2", into = "row_2") %>%
+      add_slider(into = "ctl_2", type = "range", id = "smoothing_input",
                  min = "0.0", max = "1.0", step = "0.01", value = "0",
-                 oninput = "slider_smooth(this.Value)") %>%
-      add_slider(into = "others", type = "range", id = "thinning_input",
-                 min = "0", max = "100", oninput = "thin(this.Value)") %>%
-    add_container(id = "column_2") %>%
-      add_item(id = "text_box", into = "column_2")
+                 oninput = "slider_smooth(value)") %>%
+
+  add_container(id = "row_3") %>%
+    add_item(id = "db_3", into = "row_3") %>%
+    add_item(id = "ctl_3", into = "row_3") %>%
+      add_slider(into = "ctl_3", type = "range", id = "thinning_input",
+                 min = "0", max = "40", value = "0",
+                 oninput = "slider_thin(value)")
+
 
 my_html %<>% add_style(
   ".container#row_1 {
@@ -32,7 +40,11 @@ my_html %<>% add_style(
       display: flex;
       flex-direction: column;
       padding-top: 1.1em;
-      padding-left: 1.1em;
+    }
+    .container#column_3 {
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.1em;
     }
     ")
 
