@@ -24,8 +24,8 @@ function mouseReleased() {
   ws.send(JSON.stringify(grid_data.y));
 }
 // Canvas setup
-var canvas_width = 420;
-var canvas_height = 420;
+var canvas_width = 420 + 1;
+var canvas_height = 420 + 1;
 function setup() {
   var my_canvas = createCanvas(canvas_width, canvas_height);
   my_canvas.parent('column_1');
