@@ -9,6 +9,13 @@ my_html <- create_html() %>%
   add_container(id = "row_1") %>%
     add_container(id = "column_1") %>%
       add_item(id = "drawing_box", into = "column_1") %>%
+      add_item(id = "others", into = "column_1") %>%
+      add_button(into = "others", text = "Clear", onclick = "clear_canvas()") %>%
+      add_slider(into = "others", type = "range", id = "smoothing_input",
+                 min = "0.0", max = "1.0", step = "0.01", value = "0",
+                 oninput = "slider_smooth(this.Value)") %>%
+      add_slider(into = "others", type = "range", id = "thinning_input",
+                 min = "0", max = "100", oninput = "thin(this.Value)") %>%
     add_container(id = "column_2") %>%
       add_item(id = "text_box", into = "column_2")
 
@@ -30,6 +37,7 @@ my_html %<>% add_style(
     ")
 
 my_html %<>%
+  # add_script_from_file("inst/p5.js") %>%
   add_script_from_file("inst/R.js") %>%
   add_script_from_file("inst/example_6.js")
 write_html_to_file(my_html, file = "inst/sample.html")
