@@ -6,6 +6,7 @@ ws.onmessage = function(msg) {
   //var in_msg = JSON.parse(msg.data);
 };
 
+
 // Canvas setup
 var canvas_width = 600;
 var canvas_height = 140;
@@ -14,6 +15,25 @@ function setup() {
   my_canvas.parent('drawing_box');
   clear_canvas();
 }
+
+
+// Interaction
+function mouseDragged() {
+  if (in_canvas()) {
+    writing_data.x.push(mouseX);
+    writing_data.y.push(mouseY);
+    writing_data.state.push(1);
+    plot_last_point(writing_data);
+  }
+}
+function mouseReleased() {
+  // Ending point of a stroke
+  writing_data.state[data_len() - 1] = 2;
+  console.log(writing_data);
+}
+
+
+// Canvas behaviour
 function clear_canvas() {
   fill(255);
   rect(0, 0, canvas_width - 1, canvas_height - 1);
@@ -40,20 +60,9 @@ function plot_last_point(writing_data) {
   }
 }
 function plot_data(writing_data, color) {}
-function mouseDragged() {
-  if (in_canvas()) {
-    writing_data.x.push(mouseX);
-    writing_data.y.push(mouseY);
-    writing_data.state.push(1);
-    plot_last_point(writing_data);
-  }
-}
-function mouseReleased() {
-  // Ending point of a stroke
-  writing_data.state[data_len() - 1] = 2;
-  console.log(writing_data);
-}
-// Canvas behaviour
+
+
+// Widget behaviour
 function slider_smooth(param) {
   smooth_data = writing_data;
   console.log(param);
@@ -66,17 +75,6 @@ function slider_smooth(param) {
     // plot_data(smooth_data, 0);
   }
 }
-function thin(param) {
+function slider_thin(param) {
 
 }
-/*
-plot_data();
-function plot_data() {
-  for (var i = 0; i < writing_data.x.length; i++) {
-    ellipse(writing_data.x[i], writing_data.y[i], 10, 10);
-    if (i < writing_data.x.length - 1) {
-
-    }
-  }
-}
-*/
