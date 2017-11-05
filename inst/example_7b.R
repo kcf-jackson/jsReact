@@ -41,8 +41,10 @@ my_html %<>% add_script("
       mode: 'markers', type: 'scatter'
     };
     var layout = {
-      xaxis: {range: [data0.plot_range.xmin[0], data0.plot_range.xmax[0]], type: 'log'},
-      yaxis: {range: [data0.plot_range.ymin[0], data0.plot_range.ymax[0]]},
+      xaxis: {range: [data0.plot_range.xmin[0], data0.plot_range.xmax[0]],
+              type: 'log', title: 'Population'},
+      yaxis: {range: [data0.plot_range.ymin[0], data0.plot_range.ymax[0]],
+              title: 'Life expectancy (in years)'},
       margin: {t:10, l:30}
     };
     Plotly.newPlot('plotly_plot', [trace1], layout);
