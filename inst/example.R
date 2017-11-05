@@ -3,7 +3,7 @@ rm(list = ls())
 library(jsReact)
 library(magrittr)
 my_html <- create_html() %>%
-  add_title("Send message") %>%i
+  add_title("Send message") %>%
   add_slider(type = "range", id = "slide_input", min = "0", max = "100",
              oninput = "show_value(this.Value)") %>%
   add_title("Receive message") %>%
@@ -18,5 +18,9 @@ my_html %<>% add_script(
    }')
 write_html_to_file(my_html, file = "inst/sample.html")
 
-my_app <- create_app("inst/sample.html", insert_socket = T)
+r_fun <- function(msg) {
+  print(msg)
+}
+
+my_app <- create_app("inst/sample.html", r_fun, insert_socket = T)
 start_app(my_app)

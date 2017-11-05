@@ -26,6 +26,7 @@ my_html %<>% add_script("
   }
 ")
 my_r_fun <- function(msg) {
+  print(msg)
   list(x = rnorm(1), y = as.numeric(msg))
 }
 write_html_to_file(my_html, file = "inst/sample.html")
