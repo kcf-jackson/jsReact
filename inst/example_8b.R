@@ -3,6 +3,7 @@
 rm(list = ls())
 library(jsReact)
 library(magrittr)
+library(tweenr)
 
 
 # Create frame from the data
