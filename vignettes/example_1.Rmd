@@ -1,5 +1,5 @@
 ---
-title: 'Tutorial 1: Javascript-R communication mechanism'
+title: 'Tutorial 1: R talks to JavaScript'
 author: "Jackson Kwok"
 date: "`r Sys.Date()`"
 output:
