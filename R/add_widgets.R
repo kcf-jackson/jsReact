@@ -17,7 +17,7 @@ add_button <- function(my_html, into = "<body>", text = "", ...) {
 #' @param ... Extra parameter that goes into a tag, e.g. In <div type = "xxx">, 'type = "xxx"' goes to ... .
 #' @export
 add_slider <- function(my_html, into = "<body>", ...) {
-  script <- add_widget("input", ...)[1]
+  script <- add_widget("input", type = "range", ...)[1]
   my_html %<>% insert_into(script, into)
 }
 
