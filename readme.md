@@ -3,7 +3,7 @@ This package explores using Javascript (JS) in R to create interactive app.
 
 ### Progress
 
-The basic framework is set, and at the moment I am expanding on examples (located in the 'inst' folder. Source the R files to run the examples). Collaboration is welcomed! 
+The basic framework is set, and at the moment I am expanding on **examples** (see the 'inst' folder) and **tutorials** (see 'vignettes'). Collaboration is welcomed! 
 
 Some examples:
 <div align = 'center'>
