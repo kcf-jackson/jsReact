@@ -25,13 +25,13 @@ To create an app, you will need a html file to display your app along with some 
 
 Don't worry about it if you don't have a html file and a js file at the moment, we will build them together very soon. For now, just focus on the high-level understanding. To make R talk to JS, you need three functions:
 
-1. `ws.send(str0)`: this command lives in JS, and it sends a string to R every time it's called. To send complex data, the standard trick is to use `ws.send(JSON.stringify(my_complex_data))`.
+1. `ws.send(str0)`("ws" stands for "websocket"): this command lives in JS, and it sends a string to R every time it's called. The common usage is `ws.send(JSON.stringify(my_complex_data))`, where we convert the (JSON) data into a string using `JSON.stringify`; this function applies to all lists in JS. 
 
-2. `ws.onmessage(msg) = function { ... }`: this function lives in JS. It continuously monitors if R has sent JS a message, and it runs the code in the body when it gets a message. The message contains other metadata, and we use `JSON.parse(msg.data)` to extract the data from the message.
+2. `ws.onmessage(msg) = function { ... }`: this function lives in JS. It continuously monitors if R has sent JS a message, and it runs the code in the body when it gets a message. The message contains many things other than your data, and we can use `JSON.parse(msg.data)` to extract the data from it.
 
 3. Your R function (well, clearly) lives in R. It describes what R should do when JS sends R some data. The input is assumed to be a named list, and the output must also be a named list. 
 
-The following is a common pattern to use. It is very flexible; in fact, all examples are created under this framework. More 'custom' pattern can be created, but we shall leave that to another tutorial.
+The following is a common pattern to use. It is very flexible; in fact, all examples in the package are created under this framework. Additional patterns can be created, but we shall leave that to another tutorial.
 
 ![Diagram 2: JS-R communication model](example_1_images/basic_framework.png){width=70%}
 
@@ -61,7 +61,7 @@ my_r_function <- function(msg) {
 #### Example 2
 - JavaScript
 ```
-ws.send("JSON.stringify({x:3, y:4})");
+ws.send("JSON.stringify({x:3, y:4})");    // sends a named list in JS to R
 ws.onmessage = function(msg) {
   var r_data = JSON.parse(msg.data);
   console.log(r_data['r_msg'], r_data['z']);   // this prints the message in JS console
@@ -103,7 +103,7 @@ Two comments to make:
 
 ***
 
-### 1.2.2 Codes
+### 1.2.2 Code
 Next, let's decompose and analyse the codes.
 
 ![](example_1_images/codes.png){width=80%}
@@ -159,10 +159,10 @@ In this tutorial, we went through how to interact with JavaScript in R. The pack
 
 Along the way, we have also learnt about some useful functions for apps development:
 
-- for building the html interface, we have `add_title, add_slider, add_div`; 
+- for building the html interface, we have `jsReact::add_title, jsReact::add_slider, jsReact::add_div`; 
 
 - for JavaScript, we have `document.getElementById('_ID_')`;
 
-- for running the app, we have `write_html_to_file(), create_app(), start_app()`.
+- for running the app, we have `jsReact::write_html_to_file(), jsReact::create_app(), jsReact::start_app()`.
 
 I hope you successfully created an app in R, and I shall see you in the next tutorial!
