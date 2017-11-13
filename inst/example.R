@@ -1,5 +1,4 @@
 # Example 1. This file explores the basic mechanism for R and JS to interact.
-rm(list = ls())
 library(jsReact)
 library(magrittr)
 my_html <- create_html() %>%
