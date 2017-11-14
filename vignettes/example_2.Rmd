@@ -1,0 +1,124 @@
+---
+title: 'Example 2: Interactive plotting'
+author: "Jackson Kwok"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_document:
+    theme: lumen
+vignette: >
+  %\VignetteIndexEntry{example_2}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+***
+
+## 1.1 Introduction
+### Introduction
+In this example, we study a way to trigger an event in the browser and update a plot interactively. The goal is to create apps that allows for smooth transition (more so than Shiny!). This is the app we are going to make:
+
+![](https://github.com/kcf-jackson/jsReact/raw/master/inst/example_2.gif){width=50%}
+
+
+### Outlook 
+
+After this tutorial, you can proceed to example 8 and example 8b:
+<div>
+<img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_8.gif style="width:49%;height:400px;">
+<img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_8b.gif style="width:49%;height:400px;">
+</div>
+
+I hope you are convinced that while they look different, they are really the same as this example just with different data. In those examples, we will leverage the tweenR package and the technique we go through in this tutorial to create the animation effect.
+
+***
+
+## 1.2 Design
+The code for this tutorial can be found [here](https://github.com/kcf-jackson/jsReact/blob/master/inst/example_2.R).
+
+### 1.2.1 App interface
+Let's inspect the interface:
+
+![](example_2_images/app_interface.png){width=50%}
+
+In terms of interface, this app is largely the same as the one we saw in tutorial 1. The only difference is the additional container at the bottom, in which we will make a`plotly` plot. 
+
+***
+
+### 1.2.2 Code
+It is no surprise that the code for this app is similar to tutorial 1!
+![](example_2_images/codes.png){width=80%}
+
+In fact, there are only 8 new lines in this file. Alright, let's break the codes into four parts again and inspect each of them.
+
+***
+
+#### Html
+![](example_2_images/html.png){width=80%}
+
+Lines 6 and 11 are the new lines.
+
+- Line 6: Since we are going to make a`plotly` plot, so we need to include the library in the html file. 
+
+- Line 11: Use `add_div` again to add a container and give it an `id` for future reference. This is where we will place our `plotly` plot into. 
+
+
+
+#### Javascript
+![](example_2_images/javascript.png){width=80%}
+
+Lines 18-22 are the new lines. These lines produce the plotly plot using data received from R. 
+
+- Line 18: Standard command to parse the data from R (as mentioned in tutorial 1).
+
+- Line 19-20: Commands to construct the plot. These are from the [plotly.js website](https://plot.ly/javascript/line-and-scatter/) (simply apply your supreme copy-and-paste skill). `x,y` refers to the data, `mode: 'markers'` suggests points, and `type: 'scatter'` suggests scatter plot. (This uses the grammar of graphics.)
+
+- Line 21: Actually making the plot. `[trace1]` is plotted in the container with id `plotly_plot` according to `layout`. Note that `layout` is optional, if you don't supply that, plotly will use its default. 
+
+***
+
+#### R function
+![](example_2_images/r_function.png){width=80%}
+
+Line 27 is the new line.
+
+- Lines 27: We return a list of x, y coordinates for `plotly`. The `x` coordinate is a random number and `y` is the slider value (received from JS side). 
+
+***
+
+#### Others
+![](example_2_images/others.png){width=80%}
+
+No new line.
+
+- This part should become standard in each app. (Recall that line 29 is not needed if you supply your own html file.)
+
+***
+
+### 1.2.3 Simple modification
+
+If you don't like the idea of sliders, we can remove that and replace it by a timer to send some random data to R a few times a second (so that the plot updates by itself). The timer function is given by `setInterval(fun, t)`. It calls the function `fun` once every `t` milli-secs. (Note that once every 100 milli-seconds = 1 second 10 times.)
+
+```
+var myVar = setInterval(animate_frame, 100);
+function animate_frame() {
+  ws.send(60 + Math.random() * 10);
+}
+```
+
+For simplicity, we just insert this code at the beginning of the Javascript, keeping the slider in the app. This is what we get:
+
+![](../inst/example_2b.gif){width=50%}
+
+***
+
+## 1.3 Summary
+
+In this tutorial, we have learnt how to make a `plotly` plot using JS and have it respond to slider events. 
+
+- For the html part, we added the `plotly.js` library and an extra container using `add_js_library` and `add_div`.
+
+- For the JS part, we added some codes to make a `plotly` plot (using the copy-and-paste 'technique'!). 
+
+- For the R part, we made R return a list of x, y coordinates.
+
+As an extension, we learnt about timer events triggered by `setInterval(fun, t)`, which runs the function `fun` once every `t` milli-seconds. Overall, this tutorial prepares us for animation-type visualisation. From here one could head to example 3, where we will learn about another JS library (`p5.js`) to create some common visual effects, or example 8, where we will create animated plots using simulated / real data. See you in the next tutorial!
