@@ -1,3 +1,22 @@
+#' Preview app
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @param user_function R function; the function to process the data from the web interface.
+#' @param server T or F; whether to enable interaction between JS and R.
+preview_app <- function(my_html, user_function = identity, server = F) {
+  temp_dir <- tempfile()
+  dir.create(temp_dir)
+  file_path <- file.path(temp_dir, "index.html")
+  if (server == F) {
+    write_html_to_file(my_html, file_path)
+    getOption("viewer")(file_path)
+  } else {
+    write_html_to_file(my_html, file_path)
+    my_app <- create_app(file_path, user_function)
+    start_app(my_app)
+  }
+}
+
+
 #' Run an interactive app
 #' @param app An app; output from the 'create_app' function
 #' @param host character string; Address to host the app.
