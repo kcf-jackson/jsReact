@@ -19,6 +19,9 @@ In this example, we study a way to trigger an event in the browser and update a 
 
 ![](https://github.com/kcf-jackson/jsReact/raw/master/inst/example_2.gif){width=50%}
 
+The app displays a point with a randomly generated x-coordinate and a y-coordinate controlled by the slider. 
+
+
 
 ### Outlook 
 
@@ -115,9 +118,9 @@ For simplicity, we just insert this code at the beginning of the Javascript, kee
 
 In this tutorial, we have learnt how to make a `plotly` plot using JS and have it respond to slider events. 
 
-- For the html part, we added the `plotly.js` library and an extra container using `add_js_library` and `add_div`.
+- For the html part, we added the `plotly.js` library using `add_js_library` and an extra container using `add_div`.
 
-- For the JS part, we added some codes to make a `plotly` plot (using the copy-and-paste 'technique'!). 
+- For the JS part, we made a plot using functions from the `plotly.js` library. This requires very little work as we simply modified code extracted from `plotly.js` example [webpage](https://plot.ly/javascript/line-and-scatter/)! 
 
 - For the R part, we made R return a list of x, y coordinates.
 
