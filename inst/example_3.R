@@ -2,49 +2,46 @@
 rm(list = ls())
 library(jsReact)
 library(magrittr)
+
 my_html <- create_html() %>%
   add_js_library(c("plotly", "p5")) %>%
+    add_column(id = "column_1") %>%
+      add_title("Parameter domain", into = "column_1") %>%
+    add_column(id = "column_2") %>%
+      add_div(id = "plotly_plot", into = "column_2") %>%
   add_style(
     ".column { float:left; }
-      h3 { margin-top: 2cm; }") %>%
-  add_row(id = "row_1") %>%
-  add_column(id = "column_1") %>%
-  add_title("Parameter domain", into = "column_1") %>%
-  add_column(id = "column_2") %>%
-  add_div(id = "plotly_plot", into = "column_2")
+    h3 { margin-top: 2cm; }"
+  )
 
-
-my_html %<>% add_script(
- "ws.onmessage = function(msg) {
+my_html %<>% add_script("
+  ws.onmessage = function(msg) {
     var data0 = JSON.parse(msg.data);
     var trace1 = {
-      x: data0['x'], y: data0['y'],
-      mode: 'markers', type: 'scatter'
+      x: data0['x'], y: data0['y'], mode: 'markers', type: 'scatter'
     };
     var layout = {
       title: 'Geometry of the sigmoid function',
-      xaxis: {range: [-100, 100]},
-      yaxis: {range: [-0.5, 1.5]}
+      xaxis: {range: [-100, 100]}, yaxis: {range: [-0.5, 1.5]}
     };
     Plotly.newPlot('plotly_plot', [trace1], layout);
   }
-") %>% add_script(
- "var canvas_width = canvas_height = 200
+  var canvas_width = canvas_height = 200
   function setup() {
     var my_canvas = createCanvas(canvas_width, canvas_height);
     my_canvas.parent('column_1');
-    draw_bg()
+    draw_bg();
   }
   function draw() {
     if (mouseIsPressed) {
-      draw_bg()
-      draw_pt()
+      draw_bg();
+      draw_pt();
     }
   }
   function draw_bg() {
     rect(0, 0, canvas_width-1, canvas_height-1);
-    line(canvas_width / 2, 0, canvas_width / 2, canvas_height)
-    line(0, canvas_height / 2, canvas_width, canvas_height / 2)
+    line(canvas_width / 2, 0, canvas_width / 2, canvas_height);
+    line(0, canvas_height / 2, canvas_width, canvas_height / 2);
   }
   function draw_pt() {
     ellipse(mouseX, mouseY, 10, 10);
@@ -53,8 +50,8 @@ my_html %<>% add_script(
       'y': map(mouseY, canvas_height, 0, -1, 1)
     };
     ws.send(JSON.stringify(json_msg_to_r));
-  }")
-
+  }
+")
 
 my_r_fun <- function(msg) {
   beta_1 <- msg$x * 10
@@ -63,7 +60,6 @@ my_r_fun <- function(msg) {
   y <- boot::inv.logit(beta_1 + beta_2 * x)
   list(x = x, y = y)
 }
-
 
 write_html_to_file(my_html, "inst/sample.html")
 my_app <- create_app("inst/sample.html", my_r_fun)
