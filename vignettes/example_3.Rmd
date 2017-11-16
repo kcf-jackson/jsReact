@@ -24,7 +24,7 @@ In this tutorial, we are going to learn a simple, yet powerful JS library called
 For the app on the left, the "parameter domain" canvas is created using `p5.js`, and the right canvas is created using `plotly.js`. For the app on the right, the entire canvas is created using `p5.js`. `p5.js` provides many easy-to-use functions to construct simple geometric objects and manage the mouse events, and they are what we are going to learn today.
 
 
-##### [[1]]{#note_1} I only started looking into `p5.js` after [Jonathan Carroll](https://github.com/jonocarroll) proposed a [project](https://github.com/ropensci/ozunconf17/issues/23) related to it during the [rOpenSci OzUnconf 2017](http://ozunconf17.ropensci.org/). (We then joined the same team which created the package [`realtime`](https://github.com/ropenscilabs/realtime).) 
+###### [[1]]{#note_1} I only started looking into `p5.js` after [Jonathan Carroll](https://github.com/jonocarroll) proposed a [project](https://github.com/ropensci/ozunconf17/issues/23) related to it during the [rOpenSci OzUnconf 2017](http://ozunconf17.ropensci.org/). (We then joined the same team which created the package [`realtime`](https://github.com/ropenscilabs/realtime).) 
 
 
 ***
