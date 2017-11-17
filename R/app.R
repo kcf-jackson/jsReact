@@ -2,6 +2,7 @@
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param user_function R function; the function to process the data from the web interface.
 #' @param server T or F; whether to enable interaction between JS and R.
+#' @export
 preview_app <- function(my_html, user_function = identity, server = F) {
   temp_dir <- tempfile()
   dir.create(temp_dir)
