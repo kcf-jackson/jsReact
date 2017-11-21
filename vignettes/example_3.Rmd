@@ -14,14 +14,13 @@ vignette: >
 ***
 
 ## 1.1 Introduction
-### Introduction
-In this tutorial, we are going to learn a simple, yet powerful JS library called [`p5.js`](https://p5js.org/) [[1]](#note_1). The goal of the tutorial is to learn the basic of p5.js in preparation to create these two apps:
+In this tutorial, we are going to learn a simple, yet powerful JS library called [`p5.js`](https://p5js.org/) [[1]](#note_1). The goal of the tutorial is to learn the basics of p5.js in preparation for creating the following two apps:
 <div align='center'>
 <img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_3.gif style="width:59%;height:400px;">
 <img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_4.gif style="width:40%;height:400px;">
 </div>
 
-For the app on the left, the "parameter domain" canvas is created using `p5.js`, and the right canvas is created using `plotly.js`. For the app on the right, the entire canvas is created using `p5.js`. `p5.js` provides many easy-to-use functions to construct simple geometric objects and manage the mouse events, and they are what we are going to learn today.
+For the app on the left, the "parameter domain" canvas is created using `p5.js`, and the right canvas is created using `plotly.js`. For the app on the right, the entire canvas is created using `p5.js`. `p5.js` provides many easy-to-use functions to construct simple geometric objects and manage the mouse events. These are what we are going to learn today.
 
 
 ###### [[1]]{#note_1} I only started looking into `p5.js` after [Jonathan Carroll](https://github.com/jonocarroll) proposed a [project](https://github.com/ropensci/ozunconf17/issues/23) related to it during the [rOpenSci OzUnconf 2017](http://ozunconf17.ropensci.org/). (We then joined the same team which created the package [`realtime`](https://github.com/ropenscilabs/realtime).) 
@@ -32,7 +31,7 @@ For the app on the left, the "parameter domain" canvas is created using `p5.js`,
 ## 1.2 Basic structure and Common functions of p5.js
 
 ### Structure
-The basic setup of `p5.js` consists of the functions `setup` and `draw`. As the names suggested, the first function setups a canvas, and the second function draws on it (60 times per second).
+The basic setup of `p5.js` consists of the functions `setup` and `draw`. As the names suggest, the first function sets up a canvas, and the second function draws on it (60 times per second).
 
 #### Example 1
 ```{r, eval = F}
@@ -87,7 +86,7 @@ Note that all the "magic" really comes from the underlying calculation rather th
 
 #### Isolating the R code and the JS code
 
-As you may have noticed, in the last two examples the html interface actually hasn't changed; what's changed is only the JS part. It seems sensible to introduce here a way to isolate / compartmentalise the two parts so that we don't have to include the R codes every time. For instance, we could rewrite example 1 as follows.
+As you may have noticed, in the last two examples the html interface actually hasn't changed; what has changed is only the JS part. It seems sensible to introduce here a way to isolate / compartmentalise the two parts so that we don't have to include the R codes every time. For instance, we could rewrite example 1 as follows.
 
 First we put the JS part into a file `my_script.js`.
 ```
@@ -141,7 +140,7 @@ function draw() {
 }
 ```
 
-In the above, `draw` monitors if there is a mouse click; if so, it'll plot a point at the mouse position given by `mouseX, mouseY`. Since `draw` updates the canvas 60 times a second, you won't notice any delay.
+In the above, `draw` monitors if there is a mouse click; if so, it will plot a point at the mouse position given by `mouseX, mouseY`. Since `draw` updates the canvas 60 times a second, you won't notice any delay.
 
 <div align='center'>
 <img src=example_3_images/static.png style="height:400px">
@@ -155,6 +154,6 @@ In this tutorial, we have learnt some basics of `p5.js`. This includes:
 
 - the structure: it consists of two key functions `setup` and `draw`, and
 
-- some common functions: `rect, line, ellipse` for creating simple geometric objects, `mouseIsPressed, mouseX, mouseY` for managing mouse events. 
+- some common functions: `rect, line` and `ellipse` for creating simple geometric objects, `mouseIsPressed, mouseX` and `mouseY` for managing mouse events. 
 
 Now we are ready to move on to example 3 and example 4! See you in the next tutorial. 
