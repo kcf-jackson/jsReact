@@ -84,7 +84,7 @@ my_r_function <- function(msg) {
 
 Now we are ready to create our first app, which looks like this:
 
-![](https://github.com/kcf-jackson/jsReact/raw/master/inst/example.gif){width=50%}
+![](https://cdn.rawgit.com/kcf-jackson/jsReact/9e57eb72/inst/example.gif){width=50%}
 
 The goal is to get ourselves familiar with the JS-R communication model and the whole app development process. The full code can be found [here](https://github.com/kcf-jackson/jsReact/blob/master/inst/example.R).
 

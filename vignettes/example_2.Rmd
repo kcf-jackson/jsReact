@@ -17,7 +17,7 @@ vignette: >
 ### Introduction
 In this example, we study a way to trigger an event in the browser and update a plot interactively. The goal is to create apps that allows for smooth transition (more so than Shiny!). This is the app we are going to make:
 
-![](https://github.com/kcf-jackson/jsReact/raw/master/inst/example_2.gif){width=50%}
+![](https://cdn.rawgit.com/kcf-jackson/jsReact/9e57eb72/inst/example_2.gif){width=50%}
 
 The app displays a point with a randomly generated x-coordinate and a y-coordinate controlled by the slider. 
 
@@ -27,8 +27,8 @@ The app displays a point with a randomly generated x-coordinate and a y-coordina
 
 After this tutorial, you can proceed to example 8 and example 8b:
 <div>
-<img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_8.gif style="width:49%;height:400px;">
-<img src= https://github.com/kcf-jackson/jsReact/raw/master/inst/example_8b.gif style="width:49%;height:400px;">
+<img src= https://cdn.rawgit.com/kcf-jackson/jsReact/9e57eb72/inst/example_8.gif style="width:49%;height:400px;">
+<img src= https://cdn.rawgit.com/kcf-jackson/jsReact/9e57eb72/inst/example_8b.gif style="width:49%;height:400px;">
 </div>
 
 I hope you are convinced that while they look different, they are really the same as this example just with different data. In those examples, we will leverage the tweenR package and the technique we go through in this tutorial to create the animation effect.
