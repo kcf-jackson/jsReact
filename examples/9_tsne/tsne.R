@@ -11,12 +11,11 @@ my_html <- create_html() %>%
     add_div(id = "plotly_plot", into = "column_left") %>%
   add_column(id = "column_right") %>%
     add_row(id = "row_1") %>%
-      add_button(text = "Start / Pause", into = "row_1") %>%
-      add_button(text = "Restart", into = "row_1") %>%
+      add_button(text = "Start / Continue", into = "row_1", onclick = "keep_going();") %>%
+      add_button(text = "Stop", into = "row_1", onclick = "stop();") %>%
     add_row(id = "row_2") %>%
-      add_slider(into = "row_2") %>%
-      add_slider(into = "row_2") %>%
-      add_slider(into = "row_2") %>%
+      add_slider(into = "row_2", id = "perp", min = "1", max = "500", step = "1", value = "30") %>%
+      add_slider(into = "row_2", id = "lr", min = "1.0", max = "200.0", step = "0.1", value = "10") %>%
   add_style(".column { float:left; }")
 
 my_html %<>%

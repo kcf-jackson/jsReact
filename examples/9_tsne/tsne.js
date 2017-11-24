@@ -1,6 +1,7 @@
 var dists;
 var tsne;
 var min_x = 0, min_y = 0, max_x = 0, max_y = 0;
+var train = false;
 
 ws.onopen = function() {
   ws.send(JSON.stringify({status: 'initialising'}));
@@ -14,15 +15,17 @@ ws.onmessage = function(msg) {
 
 setup_tsne = function() {
   var opt = {};
-  opt.epsilon = 10;    // epsilon is learning rate (10 = default)
-  opt.perplexity = 30; // roughly how many neighbors each point influences (30 = default)
+  opt.epsilon = document.getElementById("lr").value; // epsilon is learning rate
+  opt.perplexity = document.getElementById("perp").value; // roughly how many neighbors each point influences
   opt.dim = 2;         // dimensionality of the embedding (2 = default)
   tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   tsne.initDataDist(dists);
 };
 run_tsne = function() {
-  tsne.step(); // every time you call this, solution gets better
-  plot_ly(tsne.getSolution());
+  if (train) {
+    tsne.step(); // every time you call this, solution gets better
+    plot_ly(tsne.getSolution());
+  }
 };
 plot_ly = function(data0) {
   var x = data0.map(x => x[0]);
@@ -40,3 +43,9 @@ plot_ly = function(data0) {
   };
   Plotly.newPlot('plotly_plot', [trace1], layout);
 };
+function stop() {
+  train = false;
+}
+function keep_going() {
+  train = true;
+}
