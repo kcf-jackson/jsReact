@@ -74,6 +74,16 @@ add_script_from_file <- function(my_html, file) {
 }
 
 
+#' Add Javascript from link
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @param link weblink to the JS file
+#' @export
+add_script_from_link <- function(my_html, link) {
+  script <- sprintf("<script src='%s'></script>\n", link)
+  insert_into(my_html, script, "<body>")
+}
+
+
 #' Add title to body
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param title character string; the title
