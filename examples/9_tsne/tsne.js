@@ -2,6 +2,8 @@ var dists;
 var tsne;
 var min_x = 0, min_y = 0, max_x = 0, max_y = 0;
 var train = false;
+var eps = 10, perp = 30;
+var timer;
 
 ws.onopen = function() {
   ws.send(JSON.stringify({status: 'initialising'}));
@@ -10,14 +12,14 @@ ws.onmessage = function(msg) {
   var data0 = JSON.parse(msg.data);
   dists = data0.r_dist_matrix;
   setup_tsne();
-  setInterval(run_tsne, 100);
+  timer = setInterval(run_tsne, 100);
 };
 
 setup_tsne = function() {
   var opt = {};
-  opt.epsilon = document.getElementById("epsilon").value; // epsilon is learning rate
-  opt.perplexity = document.getElementById("perplexity").value; // roughly how many neighbors each point influences
-  opt.dim = 2;         // dimensionality of the embedding (2 = default)
+  opt.epsilon = eps;     // epsilon is learning rate
+  opt.perplexity = perp; // roughly how many neighbors each point influences
+  opt.dim = 2;           // dimensionality of the embedding (2 = default)
   tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   tsne.initDataDist(dists);
 };
@@ -48,5 +50,11 @@ function start_pause() {
   train = !train;
 }
 function restart() {
-  //setup_tsne();
+  min_x = 0, min_y = 0, max_x = 0, max_y = 0;
+  clearInterval(timer);
+  setup_tsne();
+  timer = setInterval(run_tsne, 100);
 }
+
+update_perp = function(value) { perp = value; restart(); };
+update_eps = function(value) { eps = value; restart(); };

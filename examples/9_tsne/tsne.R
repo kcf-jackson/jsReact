@@ -14,12 +14,10 @@ my_html <- create_html() %>%
       add_button(text = "Start / Pause", into = "row_1", onclick = "start_pause()") %>%
       add_button(text = "Restart", into = "row_1", onclick = "restart()") %>%
     add_row(id = "row_2") %>%
-      add_slider(into = "row_2", id = "perplexity",
-                 min = "2", max = "100", step = "1", value = "10",
-                 oninput = "update()") %>%
-      add_slider(into = "row_2", id = "epsilon",
-                 min = "1", max = "20", step = "1", value = "5",
-                 oninput = "update()") %>%
+      add_slider_with_text(text = "Perplexity", min = "2", max = "100", step = "1", value = "10",
+        into = "row_2", onchange = "update_perp(this.value)") %>%
+      add_slider_with_text(text = "Epsilson", min = "1", max = "20", step = "1", value = "5",
+        into = "row_2", onchange = "update_eps(this.value)") %>%
   add_style(".column { float:left; }")
 
 my_html %<>%
