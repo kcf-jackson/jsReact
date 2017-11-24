@@ -15,8 +15,8 @@ ws.onmessage = function(msg) {
 
 setup_tsne = function() {
   var opt = {};
-  opt.epsilon = document.getElementById("lr").value; // epsilon is learning rate
-  opt.perplexity = document.getElementById("perp").value; // roughly how many neighbors each point influences
+  opt.epsilon = document.getElementById("epsilon").value; // epsilon is learning rate
+  opt.perplexity = document.getElementById("perplexity").value; // roughly how many neighbors each point influences
   opt.dim = 2;         // dimensionality of the embedding (2 = default)
   tsne = new tsnejs.tSNE(opt); // create a tSNE instance
   tsne.initDataDist(dists);
@@ -43,9 +43,10 @@ plot_ly = function(data0) {
   };
   Plotly.newPlot('plotly_plot', [trace1], layout);
 };
-function stop() {
-  train = false;
+
+function start_pause() {
+  train = !train;
 }
-function keep_going() {
-  train = true;
+function restart() {
+  //setup_tsne();
 }
