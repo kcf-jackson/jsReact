@@ -2,7 +2,7 @@ rm(list = ls())
 library(magrittr)
 library(jsReact)
 
-source("examples/non-parametric_example.R")
+source("non-parametric_example.R")
 
 my_html <- create_html() %>%
   add_js_library("plotly") %>%
