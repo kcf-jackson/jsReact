@@ -26,6 +26,4 @@ my_r_fun <- function(msg) {
   print(msg)
   list(x = rnorm(1), y = as.numeric(msg))
 }
-write_html_to_file(my_html, file = "inst/sample.html")
-my_app <- create_app("inst/sample.html", user_function = my_r_fun)
-start_app(my_app)
+preview_app(my_html, my_r_fun, T)

@@ -55,7 +55,6 @@ my_html %<>% add_script(
     ws.send(JSON.stringify(data0));
   }
 ")
-write_html_to_file(my_html, "inst/sample.html")
 
 
 my_r_fun <- function(in_msg) {
@@ -77,6 +76,4 @@ make_uniform_grid <- function(min0, max0, resolution = 100) {
   grid_data
 }
 
-
-my_app <- create_app("inst/sample.html", my_r_fun)
-start_app(my_app)
+preview_app(my_html, my_r_fun, T)

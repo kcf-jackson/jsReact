@@ -38,10 +38,8 @@ my_html %<>% add_style("
   }")
 
 my_html %<>%
-  # add_script_from_file("inst/p5.js") %>%
-  add_script_from_file("inst/R.js") %>%
-  add_script_from_file("inst/example_6.js")
-write_html_to_file(my_html, file = "inst/sample.html")
+  add_script_from_file("R.js") %>%
+  add_script_from_file("example_6.js")
 
 
 r_fun <- function(msg) {
@@ -49,5 +47,4 @@ r_fun <- function(msg) {
 }
 
 
-my_app <- create_app("inst/sample.html", r_fun)
-start_app(my_app)
+preview_app(my_html, r_fun, T)

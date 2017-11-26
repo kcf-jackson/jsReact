@@ -52,7 +52,6 @@ my_html %<>% add_script("
     var myPlot = document.getElementById('plotly_plot');
   };
 ")
-write_html_to_file(my_html, file = "inst/sample.html")
 
 
 # Create the R function to handle the interaction calculation
@@ -70,7 +69,6 @@ my_r_fun <- function(msg) {
 
 
 # Create and start app
-my_app <- create_app("inst/sample.html", user_function = my_r_fun)
-start_app(my_app)
+preview_app(my_html, my_r_fun, T)
 
 # Comments: for hovertext, use paste0 and create a new column in the data using R.

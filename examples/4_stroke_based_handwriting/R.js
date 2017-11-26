@@ -67,10 +67,11 @@ function rnorm(n, mean = 0, sd = 1) {
 
 function dnorm(x, mean = 0, sd = 1, log = false) {
   var sd2 = sd**2;
+  var res;
   if (!log) {
-    var res = 1 / Math.sqrt(2 * Math.PI * sd2) * Math.exp(-((x - mean)**2) / (2 * sd2));
+    res = 1 / Math.sqrt(2 * Math.PI * sd2) * Math.exp(-((x - mean)**2) / (2 * sd2));
   } else {
-    var res = -0.5 * Math.log(2 * Math.PI * sd2) - (x - mean)**2 / (2 * sd2);
+    res = -0.5 * Math.log(2 * Math.PI * sd2) - (x - mean)**2 / (2 * sd2);
   }
   return res;
 }

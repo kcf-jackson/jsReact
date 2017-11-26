@@ -45,9 +45,8 @@ my_html %<>% add_style(
     }")
 
 my_html %<>%
-  add_script_from_file("inst/R.js") %>%
-  add_script_from_file("inst/example_5.js")
-write_html_to_file(my_html, file = "inst/sample.html")
+  add_script_from_file("R.js") %>%
+  add_script_from_file("example_5.js")
 
 
 # Use this if you want to see your own handwriting in R plot.
@@ -60,7 +59,7 @@ reshuffle <- function(vec0) {
   as.numeric(matrix(vec0, 28, 28, byrow = T))
 }
 
-load("inst/fitted_glmnet", verbose = T)
+load("fitted_glmnet", verbose = T)
 r_fun <- function(msg) {
   msg <- reshuffle(msg) * 255
   # show_digit(msg)
@@ -72,6 +71,4 @@ r_fun <- function(msg) {
   ))
 }
 
-
-my_app <- create_app("inst/sample.html", r_fun)
-start_app(my_app)
+preview_app(my_html, r_fun, T)
