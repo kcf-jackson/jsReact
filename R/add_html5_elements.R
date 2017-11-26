@@ -7,7 +7,7 @@
 #' @param text character string; the display text on the button
 #' @param close_tag T or F. Should closing tag be included?
 #' @param ... Other parameter passing to tag attributes.
-#' @keywords internal
+#' @export
 html5_elements <- function(my_html, into, insert = T, tag, text, close_tag = T, ...) {
   if (missing(into)) into <- "<body>"
   script <- add_widget(tag, text, ...)
