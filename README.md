@@ -1,20 +1,30 @@
-This package explores using Javascript (JS) in R to create interactive app.
 
-### Installation
-```
-devtools::install_github("kcf-jackson/jsReact")
-```
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+jsReact
+=======
 
-### Progress
+jsReact is designed to help you utilise JavaScript's visualisation libraries and R's modelling packages to build tailor-made interactive apps. The basic framework is set, and at the moment I am expanding on **examples** (see the 'example' folder) and **tutorials** (see 'vignettes'). Collaboration is welcomed!
 
-The basic framework is set, and at the moment I am expanding on **examples** (see the 'inst' folder) and **tutorials** (see 'vignettes'). Collaboration is welcomed! 
+#### For more information, see the [website]() which contains [tutorials](), [examples]() and [package documentation]().
 
-Some examples:
-<div align = 'center'>
-<img src="https://github.com/kcf-jackson/jsReact/raw/master/inst/example_4.gif" alt="Example_4" style="height: 450px;"/>
-<img src="https://github.com/kcf-jackson/jsReact/raw/master/inst/example_6.gif" alt="Example_6" style="height: 450px;"/>
-</div>
-<div align = 'center'>
-<img src="https://github.com/kcf-jackson/jsReact/raw/master/inst/example_8b.gif" alt="Example_8b" style="height: 420px; width:49%"/>
-<img src="https://github.com/kcf-jackson/jsReact/raw/master/inst/example_5.gif" alt="Example_5" style="height: 420px; width:49%"/>
-</div>
+Installation
+------------
+
+jsReact is currently not available from CRAN, but you can install the development version from github with:
+
+    # install.packages("devtools")
+    devtools::install_github("kcf-jackson/jsReact")
+
+Who might be interested in this package / repo ?
+------------------------------------------------
+
+-   Experienced R users who have heard JS is powerful, attempted to learn it but found the barrier too high.
+
+-   Researchers who are happy to step up their data visualisation game with JS, but still want to do modelling in R.
+
+Examples
+--------
+
+<img src="vignettes/gif_images/example_4.gif" alt="Example_4" style="height: 420px;width:49%"/> <img src="vignettes/gif_images/example_6.gif" alt="Example_6" style="height: 420px;width:49%"/>
+
+<img src="vignettes/gif_images/example_8b.gif" alt="Example_8b" style="height: 420px; width:49%"/> <img src="vignettes/gif_images/example_5.gif" alt="Example_5" style="height: 420px; width:49%"/>
