@@ -9,6 +9,10 @@ add_button <- function(my_html, into = "<body>", text = "", ...) {
   script <- paste0(button_html[1], text, button_html[2])
   my_html %<>% insert_into(script, into)
 }
+# add_button <- curry::partial(
+#   html5_elements,
+#   list(tag = "button", close_tag = T)
+# )
 
 
 #' Add slider to body
@@ -20,19 +24,7 @@ add_slider <- function(my_html, into = "<body>", ...) {
   script <- add_widget("input", type = "range", ...)[1]
   my_html %<>% insert_into(script, into)
 }
-
-
-#' Generic function to produce widgets
-#' @keywords internal
-add_widget <- function(tag, ...) {
-  start_tag <- sprintf("<%s %s>", tag, dots_to_arg(list(...)))
-  end_tag <- sprintf("</%s>", tag)
-  c(start_tag, end_tag)
-}
-
-
-# Helper function
-dots_to_arg <- function(l0) {
-  purrr::map2_chr(names(l0), l0, ~sprintf("%s = '%s'", .x, .y)) %>%
-    paste0(collapse = ", ")
-}
+# add_slider <- curry::partial(
+#   html5_elements,
+#   list(tag = "input", text = '', type = "range", close_tag = F)
+# )

@@ -1,0 +1,72 @@
+template:
+  params:
+    bootswatch: cerulean
+
+reference:
+  - title: "Html"
+    desc: >
+      Functions for creating html
+    contents:
+      - create_html
+      - write_html_to_file
+
+  - title: "Html - Header"
+    desc: >
+      Functions for adding header stuff to a html
+    contents:
+      - add_header_title
+      - add_js_library
+      - add_script
+      - add_script_from_file
+      - add_script_from_link
+      - add_style
+      - add_style_from_file
+      - add_style_from_link
+
+  - title: "Html - Containers"
+    desc: >
+      Functions for adding containers to a html
+    contents:
+      - add_div
+      - add_row
+      - add_column
+      - add_container
+      - add_item
+
+  - title: Html - Widgets
+    desc: >
+      Functions for adding widgets to a html
+    contents:
+      - add_button
+      - add_counter
+      - add_google_play_pause
+      - add_google_style_button
+      - add_slider
+      - add_slider_with_text
+      - add_text
+      - add_title
+
+  - title: Html - General html5 elements
+    desc: >
+      Functions for adding generic html5 elements to a html
+    contents:
+      - add_tag_into
+      - html5_elements
+
+  - title: App
+    desc: >
+      Functions to create and run apps
+    contents:
+      - create_app
+      - start_app
+      - preview_app
+
+
+  - title: Helper functions to aid developing
+    desc: >
+      Functions to aid developing
+    contents:
+      - developing_html
+      - developing_r
+      - developing
+

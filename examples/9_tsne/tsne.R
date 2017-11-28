@@ -2,24 +2,45 @@ rm(list = ls())
 library(magrittr)
 library(jsReact)
 
-
 my_html <- create_html() %>%
   add_script_from_link("https://rawgit.com/karpathy/tsnejs/master/tsne.js") %>%
   add_js_library("plotly") %>%
+  add_style_from_link("https://fonts.googleapis.com/icon?family=Material+Icons") %>%
   add_title("Interactive t-SNE in R") %>%
   add_column(id = "column_left") %>%
     add_div(id = "plotly_plot", into = "column_left") %>%
   add_column(id = "column_right") %>%
-    add_row(id = "row_1") %>%
-      add_button(text = "Start / Continue", into = "row_1", onclick = "keep_going();") %>%
-      add_button(text = "Stop", into = "row_1", onclick = "stop();") %>%
-    add_row(id = "row_2") %>%
-      add_slider(into = "row_2", id = "perp", min = "1", max = "500", step = "1", value = "30") %>%
-      add_slider(into = "row_2", id = "lr", min = "1.0", max = "200.0", step = "0.1", value = "10") %>%
-  add_style(".column { float:left; }")
-
+    add_row(id = "row_1", into = "column_right") %>%
+    add_google_style_button(
+      material_id = "fast_rewind", into = "row_1", onclick = "fast_rewind()"
+    ) %>%
+    add_google_play_pause(id = "play-pause", class = "playing",
+                          into = "row_1", onclick = "switch_class(); start_pause();") %>%
+    add_google_style_button(material_id = "replay", into = "row_1", onclick = "restart()") %>%
+    add_google_style_button(
+      material_id = "fast_forward", into = "row_1", onclick = "fast_forward()"
+    ) %>%
+    add_row(id = "row_2", into = "column_right") %>%
+      add_counter(text = "Step ", value = "0", counter_id = "my_counter", into = "row_2") %>%
+    add_row(id = "row_3", into = "column_right") %>%
+      add_slider_with_text(
+        text = "Perplexity ", min = "2", max = "100", step = "1", value = "10",
+        into = "row_3", onchange = "update_perp(this.value)",
+        style = "display:block; margin-top: 8pt;"
+      ) %>%
+    add_row(id = "row_4", into = "column_right") %>%
+      add_slider_with_text(
+        text = "Epsilon ", min = "1", max = "20", step = "1", value = "5",
+        into = "row_4", onchange = "update_eps(this.value)",
+        style = "display:block; margin-top: 8pt; margin-bottom: 8pt;"
+      ) %>%
+  add_style("
+      .column { float:left; }
+      .row{ padding-top: 5pt; padding-left: 5pt; padding-bottom: 8pt;}
+      #column_right{ margin-top:15pt; }
+            ")
 my_html %<>%
-  add_script_from_file("examples/9_tsne/tsne.js")
+  add_script_from_file("tsne.js")
 
 
 sample_data <- function(n, ...) {
@@ -42,4 +63,5 @@ my_r_fun <- function(msg) {
 }
 
 
+# write_html_to_file(my_html, "tsne.html")
 preview_app(my_html, my_r_fun, T)
