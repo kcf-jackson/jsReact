@@ -25,6 +25,6 @@ Who might be interested in this package / repo ?
 Examples
 --------
 
-<img src="vignettes/gif_images/example_4.gif" alt="Example_4" style="height: 420px;width:49%"/> <img src="vignettes/gif_images/example_6.gif" alt="Example_6" style="height: 420px;width:49%"/>
+<img src="vignettes/articles/gif_images/example_4.gif" alt="Example_4" style="height: 420px;width:49%"/> <img src="vignettes/articles/gif_images/example_6.gif" alt="Example_6" style="height: 420px;width:49%"/>
 
-<img src="vignettes/gif_images/example_8b.gif" alt="Example_8b" style="height: 420px; width:49%"/> <img src="vignettes/gif_images/example_5.gif" alt="Example_5" style="height: 420px; width:49%"/>
+<img src="vignettes/articles/gif_images/example_8b.gif" alt="Example_8b" style="height: 420px; width:49%"/> <img src="vignettes/articles/gif_images/example_5.gif" alt="Example_5" style="height: 420px; width:49%"/>
