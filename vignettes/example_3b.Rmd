@@ -1,0 +1,211 @@
+---
+title: 'Tutorial 3b: Practicing with p5.js'
+author: "Jackson Kwok"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_document:
+  theme: lumen
+vignette: >
+  %\VignetteIndexEntry{example_3b}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+div.interface pre { background-color: #ffcccc; }
+div.js pre { background-color: #D4EBFF; }
+div.r pre { background-color: #c9ffc1; }
+div.others pre { background-color: lightyellow; }
+</style>
+
+***
+
+## 1.1 Introduction
+
+After learning the basics of `p5.js` in tutorial [3a](https://rawgit.com/kcf-jackson/jsReact/master/vignettes/example_3.html), we are now ready to make this app: 
+
+<div align='center'>
+<img src= "gif_images/example_3.gif" style="width:70%;height:400px;">
+</div>
+
+The code for the app can be found [here](https://github.com/kcf-jackson/jsReact/blob/master/inst/example_3.R).
+
+***
+
+## 1.2 Design
+
+We analyse the app interface and the code separately as usual.
+
+
+### 1.2.1 App interface
+
+![](example_3b_images/app_interface.png){width=70%}
+
+#### Layout
+
+This app adopts a two-column view. In the first column, we have a title and a container (i.e. a `<div>`), and in the second column, we just have a container. From time to time, it still surprises me to see how simple an app really is. Things look much less "magical" once you develop the right mental framework!
+
+#### Behaviour
+Left canvas: Input
+
+- $\beta_1$ = $10 \;\times$ $x$-coordinate on the canvas
+
+- $\beta_2$ = $y$-coordinate on the canvas
+
+Right plot: Output
+
+- $x$: from -100 to 100 at a step of 1.
+
+- $f(x)$: $\sigma(\beta_1 + \beta_2 x)$, where $\sigma(z) = \dfrac{e^z}{1 + e^z}$.
+
+***
+
+### 1.2.2 Code
+
+In the last tutorial, we introduced the idea of isolating R code from JS code. This separates the interface development and the behaviour development, making it more clear which code is responsible for which component. In the following, you will see we have replaced our usual `add_script` by `add_script_from_file`.
+
+
+#### Html
+<div class = "interface">
+```
+my_html <- create_html() %>%
+  add_js_library(c("plotly", "p5")) %>%
+    add_column(id = "column_1") %>%
+      add_title("Parameter domain", into = "column_1") %>%
+      add_div(id = "p5_canvas", into = "column_1") %>%
+    add_column(id = "column_2") %>%
+      add_div(id = "plotly_plot", into = "column_2") %>%
+  add_style(
+    ".column { float:left; }
+    h3 { margin-top: 2cm; }"
+  ) %>%
+  add_script_from_file("example_3.js")
+```
+</div>
+
+This part is just typing out what we saw. Actually, it is a key feature of the package to think about the web design process using more plain-english syntax. 
+
+1. we create a html documnet (`create_html`) and include the plotly.js and p5.js libraries (`add_js_library`);
+2. add two columns (`add_column`); we add a title(`add_title`) and a div(`add_div`) in the first one and just a div in the second one (note that we have assigned ids `p5_canvas` and `plotly_plot` to the div's for future reference);
+3. lastly we add style (`add_style`) and JS script (`add_script_from_file`).
+
+For the styling, as the document does not know if we want the columns to be side-by-side or that one stacks on top of the other, we have to specify `.column { float:left; }`. This tells the html to put the columns side-by-side as long as there is space. On the other hand, `h3 { margin-top: 2cm; }` refers to putting some extra space above the title. We include that to make the app look nicer.
+
+
+***
+
+#### R
+<div class = "r">
+```
+my_r_fun <- function(msg) {
+  beta_1 <- msg$x * 10
+  beta_2 <- msg$y
+  x <- seq(-100, 100, length.out = 100)
+  y <- boot::inv.logit(beta_1 + beta_2 * x)
+  list(x = x, y = y)
+}
+```
+</div>
+
+This function takes the coordinate on the left canvas (stored in `msg`), evaluates the corresponding sigmoid function on a fixed set of points, then returns the data to JS for plotting. 
+
+
+***
+
+#### JS code
+<div class = "js">
+```
+ws.onmessage = function(msg) {
+  var data0 = JSON.parse(msg.data);
+  var trace1 = {
+    x: data0['x'], y: data0['y'], mode: 'markers', type: 'scatter'
+  };
+  var layout = {
+    title: 'Geometry of the sigmoid function',
+    xaxis: {range: [-100, 100]}, yaxis: {range: [-0.5, 1.5]}
+  };
+  Plotly.newPlot('plotly_plot', [trace1], layout);
+};
+```
+This function makes a plot whenever it receives data from R. We use plotly to do that, and this part is the same as the previous [tutorial](example_2.html). 
+
+```
+var canvas_width = 200, canvas_height = 200;
+function setup() {
+  var my_canvas = createCanvas(canvas_width, canvas_height);
+  my_canvas.parent('p5_canvas');
+  draw_bg();
+}
+function draw() {
+  if (mouseIsPressed) {
+    draw_bg();
+    draw_pt();
+  }
+}
+```
+Recall that `setup()` sets up the canvas, and `draw()` draws on the canvas 60 times a second. 
+
+- In the body of `setup()`, we create the canvas (`createCanvas`), put that canvas in the div we named 'p5_canvas', then call a draw background function which we will implement later.
+
+- In the body of `draw()`, we specify that if the mouse is pressed (`mouseIsPressed`), then we redraw the background and draw a circle at the mouse position. The reason for redrawing the background is to clean up the circle at my previous mouse position. 
+
+```
+function draw_bg() {
+  rect(0, 0, canvas_width-1, canvas_height-1);
+  line(canvas_width / 2, 0, canvas_width / 2, canvas_height);
+  line(0, canvas_height / 2, canvas_width, canvas_height / 2);
+}
+function draw_pt() {
+  ellipse(mouseX, mouseY, 10, 10);
+  var json_msg_to_r = {
+    'x': map(mouseX, 0, canvas_width, -1, 1),
+    'y': map(mouseY, canvas_height, 0, -1, 1)
+  };
+  ws.send(JSON.stringify(json_msg_to_r));
+}
+```
+Finally, `draw_bg()` 
+
+- draws the background by drawing a rectangle (`rect`) having the same size of the canvas. The reason we have -1 for both 'canvas_width' and 'canvas_height' is that a line is 1px thick, and we have to make space for it.
+- Following the background, we add two lines (`line`) to the canvas serving as the x-y axis.
+
+`draw_pt()` 
+
+- draws a circle (`ellipse`) at the mouse position with width and height set to 10. 
+
+- Then, we postprocess the point we pick, and send the data to R (`ws.send`). Do make sure your named list matches how you referred to the variables in R!
+On a sidenote, we used `map(coord, s_min, s_max, t_min, t_max)` to scale the coordinate linearly from the range [s_min, s_max] to [t_min, t_max]. We could have done this in R instead, but the function `map` is quite handy, so we may as well do it in JS. 
+
+</div>
+
+
+***
+
+#### Others
+<div class = "others">
+```
+# Example 3. Explore R-JS interaction with p5.js and plotly.js.
+rm(list = ls())
+library(jsReact)
+library(magrittr)
+```
+This part is the usual setup. It's my personal habit to clean the environment before doing anything, but you don't have to do that. 
+```
+preview_app(my_html, my_r_fun, server = T)
+```
+`preview_app` is a new function i created to combine the three function calls (`write_html_to_file`, `create_app` and `start_app`) in one call, saving the html file as a temporary file. This simplifies workflow a bit further. 
+
+</div>
+
+
+
+## 1.3 Summary
+
+In this tutorial, we did some practice on  creating an app with `p5.js`. Hopefully you are now more familiar with 
+
+- how to setup a `p5` canvas using `setup()` and `draw()`,
+
+- the R-JS app development workflow.
+
+To conclude, while this is a simple example, it shares the same structure as the other apps that we are going to build, so make sure you understand this app well! 
+Looking back, this app only takes about 60 lines; later on we will see we don't have to write too much more to build something more serious; for example, the KNN classification app takes about 80 lines only. In fact, this is the app we will build in the next tutorial. See you then!

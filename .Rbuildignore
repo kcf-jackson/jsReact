@@ -3,3 +3,7 @@
 readme.html
 readme.md
 ^examples$
+^docs$
+^others$
+^_pkgdown\.yml$
+^README\.rmd$
