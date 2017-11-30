@@ -2,6 +2,34 @@ template:
   params:
     bootswatch: cerulean
 
+navbar:
+  title: "jsReact"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Articles"
+      href: articles/index.html
+    - text: "Gallery"
+      href: articles/examples/gallery.html
+    - text: "Reference"
+      href: reference/index.html
+  right:
+    - icon: fa-github
+      href: https://github.com/kcf-jackson/jsReact
+
+
+articles:
+  - title: "All vignettes"
+    desc: >
+
+    contents:
+    - example_1
+    - example_2
+    - example_3
+    - example_3b
+
+
+
 reference:
   - title: "Html"
     desc: >
