@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add text — add_text • jsReact</title>
+<title>Add drop-down list to body — add_dropdown_list • jsReact</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,14 +83,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add text</h1>
+    <h1>Add drop-down list to body</h1>
     </div>
 
     
-    <p>Add text</p>
+    <p>Add drop-down list to body</p>
     
 
-    <pre class="usage"><span class='fu'>add_text</span>(<span class='no'>my_html</span>, <span class='no'>text</span>, <span class='kw'>into</span> <span class='kw'>=</span> <span class='st'>"&lt;body&gt;"</span>)</pre>
+    <pre class="usage"><span class='fu'>add_dropdown_list</span>(<span class='no'>my_html</span>, <span class='kw'>into</span> <span class='kw'>=</span> <span class='st'>"&lt;body&gt;"</span>, <span class='no'>options</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -100,12 +100,16 @@
       <td><p>html in a vector of strings; output from 'create_html'.</p></td>
     </tr>
     <tr>
-      <th>text</th>
-      <td><p>character string; text to be added.</p></td>
-    </tr>
-    <tr>
       <th>into</th>
       <td><p>character string; unique identifier of a line in the html. Element id is highly recommended.</p></td>
+    </tr>
+    <tr>
+      <th>options</th>
+      <td><p>character vector; the options in the drop-down list. Each item must be unique.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Extra parameter that goes into a tag, e.g. In &lt;div type = "xxx"&gt;, 'type = "xxx"' goes to ... .</p></td>
     </tr>
     </table>
     
