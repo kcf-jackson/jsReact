@@ -7,6 +7,8 @@ jsReact is designed to help you utilise JavaScript's visualisation libraries and
 
 #### For more information, see the [website](https://kcf-jackson.github.io/jsReact/index.html) which contains [tutorials](https://kcf-jackson.github.io/jsReact/articles/articles/index.html), [examples](https://kcf-jackson.github.io/jsReact/articles/examples/gallery.html) and [package documentation](https://kcf-jackson.github.io/jsReact/reference/index.html).
 
+=======
+
 Installation
 ------------
 
