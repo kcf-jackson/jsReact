@@ -5,9 +5,8 @@ jsReact
 
 jsReact is designed to help you utilise JavaScript's visualisation libraries and R's modelling packages to build tailor-made interactive apps. The basic framework is set, and at the moment I am expanding on **examples** (see the 'example' folder) and **tutorials** (see 'vignettes'). Collaboration is welcomed!
 
-#### For more information, see the [website](https://kcf-jackson.github.io/jsReact/index.html) which contains [tutorials, examples](https://kcf-jackson.github.io/jsReact/articles/articles/example_1.html) and [package documentation](https://kcf-jackson.github.io/jsReact/reference/index.html).
+#### For more information, see the [website](https://kcf-jackson.github.io/jsReact/index.html) which contains [tutorials](https://kcf-jackson.github.io/jsReact/articles/index.html), [examples](https://kcf-jackson.github.io/jsReact/articles/examples/gallery.html) and [package documentation](https://kcf-jackson.github.io/jsReact/reference/index.html).
 
-=======
 
 Installation
 ------------
