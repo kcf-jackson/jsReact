@@ -7,3 +7,5 @@ readme.md
 ^others$
 ^_pkgdown\.yml$
 ^README\.rmd$
+^vignettes/articles$
+^vignettes/examples$

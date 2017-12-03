@@ -22,6 +22,9 @@ add_js_library <- function(my_html, js_libs) {
   for (i in js_libs) {
     if (i %in% names(src)) {
       my_html %<>% insert_into(src[[i]], "<head>")
+    } else if (tolower(i) == "r") {
+      my_file <- system.file("R.js", package = "jsReact")
+      my_html %<>% add_script_from_file(my_file)
     }
   }
   my_html

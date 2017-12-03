@@ -11,11 +11,22 @@ my_html <- create_html() %>%
   add_button(text = "add 10 data points", onclick = "simulate_data(10)") %>%
   add_button(text = "add 100 data points", onclick = "simulate_data(100)") %>%
   add_button(text = "add 1000 data points", onclick = "simulate_data(1000)") %>%
+  add_button(text = "play / pause", onclick = "play_pause()") %>%
   add_div(id = "plotly_plot") %>%
   add_script(
 "
+var timer, play = false;
 function simulate_data(n) {
   ws.send(JSON.stringify({num_sim: n}))
+}
+function play_pause() {
+  if (play == false) {
+    play = true;
+    timer = setInterval(simulate_data, 100, 1);
+  } else {
+    play = false;
+    clearInterval(timer);
+  }
 }
 ws.onmessage = function(msg) {
   var data0 = JSON.parse(msg.data);

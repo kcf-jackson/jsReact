@@ -7,7 +7,7 @@ library(jsReact)
 library(magrittr)
 
 my_html <- create_html() %>%
-  add_js_library("p5") %>%
+  add_js_library(c("p5", "r")) %>%
   add_title("Stroke-based handwriting system") %>%
 
   add_container(id = "row_1") %>%
@@ -38,7 +38,6 @@ my_html %<>% add_style("
   }")
 
 my_html %<>%
-  add_script_from_file("R.js") %>%
   add_script_from_file("example_6.js")
 
 
