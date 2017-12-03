@@ -65,6 +65,7 @@ my_r_fun <- function(msg) {
        color = c(rep(0, n), rep(1, n)))
 }
 
-
-# write_html_to_file(my_html, "tsne.html")
 preview_app(my_html, my_r_fun, T)
+# write_html_to_file(my_html, "tsne.html")
+# my_app <- create_app(html_file = "tsne.html", user_function = my_r_fun)
+# start_app(my_app)

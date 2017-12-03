@@ -11,7 +11,8 @@ add_google_style_button(my_html, into = "<body>", material_id, ...)
 
 \item{into}{character string; unique identifier of a line in the html. Element id is highly recommended.}
 
-\item{material_id}{Material id from google material design, e.g. play_circle_outline}
+\item{material_id}{Material id from google material design, e.g. play_circle_outline.
+More other options, see https://material.io/icons/.}
 
 \item{...}{Other parameters to be passed as tag attributes.}
 }

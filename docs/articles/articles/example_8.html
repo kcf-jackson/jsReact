@@ -63,7 +63,7 @@
       <h1>Tutorial 8: Initialisation pattern and Animation</h1>
                         <h4 class="author">Jackson Kwok</h4>
             
-            <h4 class="date">2017-11-30</h4>
+            <h4 class="date">2017-12-03</h4>
           </div>
 
     
@@ -79,9 +79,9 @@ div.others pre { background-color: lightyellow; }
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>1.1 Introduction</h2>
-<p>We will start this tutorial by learning two techniques. The first one is a simple pattern that helps you initialise data in javascript. This comes in handy when you want to do a one-off passing of data from R to JS. The second one is to use the tweenR package to create data for animation. The idea is that transition animation is basically interpolation of frames.</p>
+<p>We will start this tutorial by learning two techniques. The first one is a simple pattern that helps you initialise data in javascript. This comes in handy when you want to do a one-off passing of data from R to JS. The second one is to use the tweenR package to create data for animation. The idea to keep in mind is that transition animation is simply an interpolation of frames.</p>
 After that, we are going to build this app:
-<div>
+<div align="center">
 <p><img src="gif_images/example_8.gif" style="width:57%;height:400px;"></p>
 </div>
 <p>The code can be found <a href="https://github.com/kcf-jackson/jsReact/blob/master/inst/example_8.R">here</a>. (Note that this example comes from the <a href="https://github.com/thomasp85/tweenr">tweenr</a> package.)</p>
@@ -151,6 +151,14 @@ r_fun &lt;- function(msg) {
 <div id="create-data-for-animation" class="section level3">
 <h3 class="hasAnchor">
 <a href="#create-data-for-animation" class="anchor"></a>1.2.2 Create data for animation</h3>
+<p>We use the <code>tweenr</code> package to create data for animation. Here is a simple example:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tweenr)
+df0 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">0</span>, <span class="dt">y =</span> <span class="dv">10</span>)
+df1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">10</span>, <span class="dt">y =</span> <span class="dv">10</span>)
+frame_df &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tweenr/topics/tween_states">tween_states</a></span>(<span class="kw">list</span>(df0, df1), <span class="dv">3</span>, <span class="dv">1</span>, <span class="st">'cubic-in-out'</span>, <span class="dv">15</span>)</code></pre></div>
+<div class="figure">
+<img src="">
+</div>
 <hr>
 </div>
 </div>
@@ -160,7 +168,7 @@ r_fun &lt;- function(msg) {
 <div id="app-interface" class="section level3">
 <h3 class="hasAnchor">
 <a href="#app-interface" class="anchor"></a>1.3.1 App interface</h3>
-<p>Let’s inspect the interface:</p>
+<p>Let’s inspect the interface: <img src="example_8_images/app_interface.png"></p>
 <p>Hm…does it look familar? Well, this app has the same interface as seen in <a href="example_2.html">tutorial 2</a>!</p>
 <hr>
 </div>

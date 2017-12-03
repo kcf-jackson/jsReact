@@ -63,7 +63,8 @@ add_google_play_pause <- function(my_html, into = "<body>", ...) {
 #' @description This widget adds a button
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param into character string; unique identifier of a line in the html. Element id is highly recommended.
-#' @param material_id Material id from google material design, e.g. play_circle_outline
+#' @param material_id Material id from google material design, e.g. play_circle_outline.
+#' More other options, see https://material.io/icons/.
 #' @param ... Other parameters to be passed as tag attributes.
 #' @export
 add_google_style_button <- function(my_html, into = "<body>", material_id, ...) {
