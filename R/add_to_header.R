@@ -75,3 +75,13 @@ add_style_from_link <- function(my_html, link) {
   my_css <- sprintf("<link rel='stylesheet' href=%s>", link)
   insert_into(my_html, my_css, "<head>")
 }
+
+
+#' Add google material icon
+#' @param my_html html in a vector of strings; output from 'create_html'.
+#' @export
+add_google_style <- function(my_html) {
+  link <- "https://fonts.googleapis.com/icon?family=Material+Icons"
+  my_css <- sprintf("<link rel='stylesheet' href=%s>", link)
+  insert_into(my_html, my_css, "<head>")
+}
