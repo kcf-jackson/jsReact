@@ -4,7 +4,8 @@
 \alias{preview_app}
 \title{Preview app}
 \usage{
-preview_app(my_html, user_function = identity, server = F)
+preview_app(my_html, user_function = identity, server = F, assets_folder,
+  ...)
 }
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
@@ -12,6 +13,10 @@ preview_app(my_html, user_function = identity, server = F)
 \item{user_function}{R function; the function to process the data from the web interface.}
 
 \item{server}{T or F; whether to enable interaction between JS and R.}
+
+\item{assets_folder}{path of the assets.}
+
+\item{...}{Additional parameters passed to 'start_app'.}
 }
 \description{
 Preview app

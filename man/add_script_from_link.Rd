@@ -4,12 +4,14 @@
 \alias{add_script_from_link}
 \title{Add Javascript from link}
 \usage{
-add_script_from_link(my_html, link)
+add_script_from_link(my_html, link, ...)
 }
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
 
 \item{link}{weblink to the JS file}
+
+\item{...}{Other parameter passing to tag attributes.}
 }
 \description{
 Add Javascript from link

@@ -4,12 +4,14 @@
 \alias{add_script}
 \title{Add Javascript to body}
 \usage{
-add_script(my_html, script)
+add_script(my_html, script, ...)
 }
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
 
 \item{script}{character string; script to add.}
+
+\item{...}{Other parameter passing to tag attributes.}
 }
 \description{
 Add Javascript to body

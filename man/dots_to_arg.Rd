@@ -4,7 +4,7 @@
 \alias{dots_to_arg}
 \title{Convert dots into html tag attributes}
 \usage{
-dots_to_arg(l0)
+dots_to_arg(l0, collapse = " ")
 }
 \description{
 Convert dots into html tag attributes
