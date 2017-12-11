@@ -2,19 +2,46 @@
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param user_function R function; the function to process the data from the web interface.
 #' @param server T or F; whether to enable interaction between JS and R.
+#' @param assets_folder path of the assets.
+#' @param ... Additional parameters passed to 'start_app'.
 #' @export
-preview_app <- function(my_html, user_function = identity, server = F) {
+preview_app <- function(my_html, user_function = identity, server = F,
+                        assets_folder, ...) {
   temp_dir <- tempfile()
   dir.create(temp_dir)
   file_path <- file.path(temp_dir, "index.html")
+  if (!missing(assets_folder)) copy_assets(assets_folder, temp_dir)
   if (server == F) {
     write_html_to_file(my_html, file_path)
     getOption("viewer")(file_path)
   } else {
     write_html_to_file(my_html, file_path)
     my_app <- create_app(file_path, user_function)
-    start_app(my_app)
+    start_app(my_app, ...)
   }
+}
+
+
+#' Copy assets to target directory
+#' @description This is needed when one needs to serve local file to RStudio viewer.
+#' @param path character_string; path to the source file / folder.
+#' @param target_dir character_string; path to the target folder.
+#' @keywords internal
+copy_assets <- function(path, target_dir) {
+  if (!file.exists(path)) stop("File / folder doesn't exist.")
+
+  if (missing(target_dir)) {
+    target_dir <- tempfile()
+    dir.create(target_dir)
+  }
+  if (file.info(path)$isdir) {
+    success <- file.copy(path, target_dir, recursive = T)
+  } else {
+    success <- file.copy(path, target_dir)
+  }
+
+  if (success) print("Folder copied successfully")
+  target_dir
 }
 
 
@@ -28,7 +55,7 @@ start_app <- function(app, host = "localhost", port = 9454, browser = "viewer") 
   address <- paste0("http://", host, ":", port)
   browseURL(address, browser = getOption(browser))
   host <- ifelse(host == "localhost", "0.0.0.0", host)
-  httpuv::runServer(host, 9454, app, 250)
+  httpuv::runServer(host, port, app, 250)
 }
 
 

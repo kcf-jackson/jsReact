@@ -58,9 +58,11 @@ add_row <- curry::partial(add_div, list(class = "row"))
 #' Add Javascript to body
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param script character string; script to add.
+#' @param ... Other parameter passing to tag attributes.
 #' @export
-add_script <- function(my_html, script) {
-  script <- paste0("<script>\n", script, "\n</script>\n")
+add_script <- function(my_html, script, ...) {
+  script <- add_widget(tag = "script", text = paste0(script, "\n"), ...)
+  script <- paste(paste(script, collapse = "\n"), "\n")
   insert_into(my_html, script, "<body>")
 }
 
@@ -68,19 +70,22 @@ add_script <- function(my_html, script) {
 #' Add Javascript from file to body
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param file filepath to the JS file
+#' @param ... Other parameter passing to tag attributes.
 #' @export
-add_script_from_file <- function(my_html, file) {
-  add_script(my_html, html_to_string(file))
+add_script_from_file <- function(my_html, file, ...) {
+  add_script(my_html, html_to_string(file), ...)
 }
 
 
 #' Add Javascript from link
 #' @param my_html html in a vector of strings; output from 'create_html'.
 #' @param link weblink to the JS file
+#' @param ... Other parameter passing to tag attributes.
 #' @export
-add_script_from_link <- function(my_html, link) {
-  script <- sprintf("<script src='%s'></script>\n", link)
-  insert_into(my_html, script, "<body>")
+add_script_from_link <- function(my_html, link, ...) {
+  script <- add_widget(tag = "script", text = "", src = link, ...)
+  script <- paste(script, collapse = "")
+  insert_into(my_html, script, "<head>")
 }
 
 
