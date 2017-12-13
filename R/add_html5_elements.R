@@ -6,12 +6,18 @@
 #' @param tag html tag, e.g. div, span, h3.
 #' @param text character string; the display text on the button
 #' @param close_tag T or F. Should closing tag be included?
+#' @param collapse T or F. Whether or not to collapse the script into a single line.
 #' @param ... Other parameter passing to tag attributes.
 #' @export
-html5_elements <- function(my_html, into, insert = T, tag, text, close_tag = T, ...) {
+html5_elements <- function(my_html, into, insert = T, tag, text, close_tag = T,
+                           collapse = T, ...) {
   if (missing(into)) into <- "<body>"
   script <- add_widget(tag, text, ...)
-  script <- ifelse(!close_tag, script[1], paste(script, collapse = ""))
+  if (!close_tag) {
+    script <- script[1]
+  } else if (collapse) {
+    script <- paste(script, collapse = "")
+  }
   if (insert) return(insert_into(my_html, script, into))
   script
 }
@@ -28,7 +34,7 @@ add_widget <- function(tag, text = '', ...) {
 
 #' Convert dots into html tag attributes
 #' @keywords internal
-dots_to_arg <- function(l0) {
+dots_to_arg <- function(l0, collapse = " ") {
   purrr::map2_chr(names(l0), l0, ~sprintf(" %s='%s'", .x, .y)) %>%
-    paste0(collapse = ",")
+    paste0(collapse = collapse)
 }

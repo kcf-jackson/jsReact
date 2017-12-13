@@ -79,84 +79,79 @@ div.others pre { background-color: lightyellow; }
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>1.1 Introduction</h2>
-<p>In this tutorial, we introduce a grid-system, which is suitable for apps like these:</p>
+<p>In this tutorial, we introduce a grid-system and build the following app.</p>
 <div>
-<p><img src="gif_images/example_4.gif" style="width:49.0%"><img src="gif_images/example_5.gif" style="width:49.0%"></p>
+<div class="figure">
+<img src="gif_images/example_4.gif" style="width:49.0%">
 </div>
+</div>
+<p>Given that the app itself has only 75 lines in total, we will just dive in, inspect the code section by section, and along the way, we learn about how to create a grid. This app is inspired by <a href="http://cs.stanford.edu/people/karpathy/convnetjs/demo/classify2d.html">Karpathy</a>.</p>
 <hr>
 </div>
-<div id="basic-grid" class="section level2">
+<div id="code" class="section level2">
 <h2 class="hasAnchor">
-<a href="#basic-grid" class="anchor"></a>1.2 Basic grid</h2>
-
-<p>First let’s set up the html with some basic structure.</p>
-<div id="r-code" class="section level3">
-<h3 class="hasAnchor">
-<a href="#r-code" class="anchor"></a>R code</h3>
-<div class="r">
-<pre><code>library(magrittr)
+<a href="#code" class="anchor"></a>1.2 Code</h2>
+<pre><code>rm(list = ls())
 library(jsReact)
-create_html() %&gt;% 
-  add_js_library("p5") %&gt;% 
-  add_title("Grid-based system") %&gt;% 
-  add_div(id = "canvas_container") %&gt;% 
-  add_script_from_file("grid.js") %&gt;% 
-  preview_app()</code></pre>
-</div>
-</div>
-<div id="js-code" class="section level3">
-<h3 class="hasAnchor">
-<a href="#js-code" class="anchor"></a>JS code</h3>
-<div class="js">
-<pre><code>// grid.js
+library(magrittr)
+my_html &lt;- create_html() %&gt;%
+  add_js_library("p5") %&gt;%
+  add_column(id = "column_1", align = 'center') %&gt;%
+    add_column(id = "column_2", align = 'center', into = "column_1") %&gt;%
+      add_text("&lt;b&gt;KNN classification&lt;/b&gt;&lt;br&gt;", into = "column_2") %&gt;%
+      add_text("Click to create red dots. &lt;br&gt; Click with key pressed to create green dots.", into = "column_2") %&gt;% 
+      add_script_from_file("example_4.js")</code></pre>
+<p>This part is responsible for the interface. - We use the <code>p5</code> library; - we have two lines of text (put into the same column so that they group together).</p>
+<p>Next, we have the JS part; we will break this into smaller pieces.</p>
+<pre><code>//example_4.js
+var data0 = {'x1': [], 'x2': [], 'y': []};
+var grid_data = {'x1': [], 'x2': [], 'y': []};
+var canvas_width = 400;
+var canvas_height = 400;
 function setup() {
   var my_canvas = createCanvas(canvas_width, canvas_height);
-  my_canvas.parent("canvas_container");
-  rect(0, 0, canvas_width - 1, canvas_height - 1);
+  my_canvas.parent('column_1');
+  rect(0, 0, canvas_width-1, canvas_height-1);
 }
 function draw() {
-  plot_data(grid);
+  plot_data(grid_data, 'bg');
+  plot_data(data0, 'data');
+}
+ws.onmessage = function(msg) {
+  grid_data = JSON.parse(msg.data);
 }</code></pre>
-</div>
-<ul>
-<li><p>The <code>setup()</code> function set the canvas up and put that into the <code>div</code> container we previously named as ‘canvas_container’. Then we draw a blank rectangle as background.</p></li>
-<li><p>The <code>draw()</code> function is the function that will be called 60 times a second, we call the <code>plot_data()</code> function to plot the grid. We will have to write this function by ourselves. The idea here is that a grid is just a group of boxes at specified coordinates, so we simply need to plot them one by one, then we have a grid! Here is how we do it.</p></li>
-</ul>
-<div class="js">
-<pre><code>// grid.js (continued)
-function plot_data(data0) {
-  // suppose data0 stores coordinates in 'x1', 'x2', and color indicators in 'y'
-  var n = data0.x1.length;
+<pre><code>function plot_data(data0, type) {
+  console.log(data0['x1']);
+  var n = data0['x1'].length;
   for (var i = 0; i &lt; n; i++) {
-    if (data0.y[i] == 1) {
-      fill(0, 255, 0);  //green color
+    if (data0['y'][i] == 1) {
+      fill(0, 255, 0);
     } else {
-      fill(255, 0, 0);  //red color
+      fill(255, 0, 0);
     }
-    //make a box at (x1, x2) and set box width and height to 20
-    rect(data0.x1[i], data0.x2[i], 20, 20);  
+    if (type == 'bg') {
+      rect(data0['x1'][i], data0['x2'][i], 20, 20);
+    } else {
+      ellipse(data0['x1'][i], data0['x2'][i], 10, 10);
+    }
   }
+}
+function mouseClicked() {
+  data0['x1'].push(mouseX);
+  data0['x2'].push(mouseY);
+  if (keyIsPressed === true) {
+    data0['y'].push(1);
+  } else {
+    data0['y'].push(0);
+  }
+  ws.send(JSON.stringify(data0));
 }</code></pre>
-</div>
-</div>
-</div>
-<div id="section" class="section level2">
-<h2 class="hasAnchor">
-<a href="#section" class="anchor"></a>1.3</h2>
-
+<p>my_r_fun &lt;- function(in_msg) { grid_data &lt;- make_uniform_grid(0, 400, 20) # this is a ‘constant’ df. Inefficient but easy to do. train_data &lt;- data.frame(x1 = in_msg<span class="math inline">\(x1, x2 = in_msg\)</span>x2, y = in_msg$y) # Refit models knn_pred &lt;- class::knn( train = train_data[,1:2], test = grid_data[,1:2], cl = train_data[,3] ) grid_data[[‘y’]] &lt;- as.numeric(as.character(knn_pred)) as.list(grid_data) } # Helpers make_uniform_grid &lt;- function(min0, max0, resolution = 100) { one_side_grid &lt;- seq(min0, max0, length.out = resolution) grid_data &lt;- expand.grid(one_side_grid, one_side_grid) grid_data &lt;- data.frame(grid_data, 0) names(grid_data) &lt;- c(‘x1’, ‘x2’, ‘y’) grid_data }</p>
+<p>preview_app(my_html, my_r_fun, T) ```</p>
 </div>
 <div id="summary" class="section level2">
 <h2 class="hasAnchor">
 <a href="#summary" class="anchor"></a>1.4 Summary</h2>
-
-=======
-<p>In this tutorial, we learnt about app deployment and two new widgets.</p>
-<ul>
-<li><p>Despite its simplicity, the app deployment part is important as it reveals the true potential of the package. Essentially, this package allows you to <strong>port any existing JS libraries to R quite easily, upon which you can build apps and deploy as regular R function calls</strong>.</p></li>
-<li><p>For the second part, we talked about how to add buttons with google-material-design icons, and sliders with text that links to the (slider) value.</p></li>
-</ul>
-<p>So that’s it for this tutorial! I shall see you next time.</p>
-
 </div>
 </div>
   </div>
@@ -167,10 +162,7 @@ function plot_data(data0) {
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">1.1 Introduction</a></li>
-      <li><a href="#basic-grid">1.2 Basic grid</a></li>
-
-      <li><a href="#section">1.3</a></li>
-
+      <li><a href="#code">1.2 Code</a></li>
       <li><a href="#summary">1.4 Summary</a></li>
       </ul>
 </div>

@@ -4,7 +4,8 @@
 \alias{html5_elements}
 \title{Create builders for html5 elements}
 \usage{
-html5_elements(my_html, into, insert = T, tag, text, close_tag = T, ...)
+html5_elements(my_html, into, insert = T, tag, text, close_tag = T,
+  collapse = T, ...)
 }
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
@@ -18,6 +19,8 @@ html5_elements(my_html, into, insert = T, tag, text, close_tag = T, ...)
 \item{text}{character string; the display text on the button}
 
 \item{close_tag}{T or F. Should closing tag be included?}
+
+\item{collapse}{T or F. Whether or not to collapse the script into a single line.}
 
 \item{...}{Other parameter passing to tag attributes.}
 }

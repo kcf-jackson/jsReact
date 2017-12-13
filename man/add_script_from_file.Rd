@@ -4,12 +4,14 @@
 \alias{add_script_from_file}
 \title{Add Javascript from file to body}
 \usage{
-add_script_from_file(my_html, file)
+add_script_from_file(my_html, file, ...)
 }
 \arguments{
 \item{my_html}{html in a vector of strings; output from 'create_html'.}
 
 \item{file}{filepath to the JS file}
+
+\item{...}{Other parameter passing to tag attributes.}
 }
 \description{
 Add Javascript from file to body

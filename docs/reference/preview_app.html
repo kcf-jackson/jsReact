@@ -90,7 +90,8 @@
     <p>Preview app</p>
     
 
-    <pre class="usage"><span class='fu'>preview_app</span>(<span class='no'>my_html</span>, <span class='kw'>user_function</span> <span class='kw'>=</span> <span class='no'>identity</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>F</span>)</pre>
+    <pre class="usage"><span class='fu'>preview_app</span>(<span class='no'>my_html</span>, <span class='kw'>user_function</span> <span class='kw'>=</span> <span class='no'>identity</span>, <span class='kw'>server</span> <span class='kw'>=</span> <span class='no'>F</span>, <span class='no'>assets_folder</span>,
+  <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -106,6 +107,14 @@
     <tr>
       <th>server</th>
       <td><p>T or F; whether to enable interaction between JS and R.</p></td>
+    </tr>
+    <tr>
+      <th>assets_folder</th>
+      <td><p>path of the assets.</p></td>
+    </tr>
+    <tr>
+      <th>...</th>
+      <td><p>Additional parameters passed to 'start_app'.</p></td>
     </tr>
     </table>
     

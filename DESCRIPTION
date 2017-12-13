@@ -1,7 +1,7 @@
 Package: jsReact
 Type: Package
 Title: Statistical models from R and Interactive apps from Javascript
-Version: 0.2.3
+Version: 0.2.4
 Authors@R: person("Chun Fung (Jackson)", family = "Kwok", email = "kcf.jackson@gmail.com", role = c("aut", "cre"))
 Maintainer: Jackson Kwok <kcf.jackson@gmail.com>
 Description: This package contains several examples of using Javascript in R to create interactive app. A few tutorials and a basic framework to facilitate communication between Javascript and R are given. 
