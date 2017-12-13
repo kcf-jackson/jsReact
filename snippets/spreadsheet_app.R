@@ -32,6 +32,7 @@ build_spreadsheet_app <- function(...) {
 #' @examples
 #' write.csv(iris, file = "test.csv", row.names = F)
 #' open_spreadsheet("test.csv")
+#' file.remove("test.csv")
 open_spreadsheet <- function(csv_file, header = T, ...) {
   get_filename <- . %>% strsplit("/") %>% unlist() %>% tail(1)
   filename <- get_filename(csv_file)
@@ -47,8 +48,8 @@ open_spreadsheet <- function(csv_file, header = T, ...) {
 
 #' A simple spreadsheet app built using jsReact (and jExcel).
 #' @description See https://bossanova.uk/jexcel for details about jExcel.
-#' @param csv_file character_string; path to the csv file.
-#' @param header T or F, should header be included as colnames?
+#' @param num_col integer; number of columns.
+#' @param num_row integer; number of rows.
 #' @param ... Other parameters to pass to the jExcel call.
 #' See https://bossanova.uk/jexcel for details.
 #' @examples
@@ -57,5 +58,5 @@ new_spreadsheet <- function(num_col = 5, num_row = 10, ...) {
   my_html <- build_spreadsheet_app(
     minDimensions = sprintf('[%s, %s]', num_col, num_row), ...
   )
-  preview_app(my_html, assets_folder = csv_file)
+  preview_app(my_html)
 }
