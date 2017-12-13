@@ -5,6 +5,7 @@ readme.md
 ^examples$
 ^docs$
 ^others$
+^snippets$
 ^_pkgdown\.yml$
 ^README\.rmd$
 ^vignettes/articles$

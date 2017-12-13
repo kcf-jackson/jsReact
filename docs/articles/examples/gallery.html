@@ -86,7 +86,11 @@
 <p>Testing the power of the package</p>
 <ul>
 <li><a href="#eg7">Stroke-based handwriting</a></li>
-<li><a href="#eg8">Animated plots</a></li>
+<li>
+<a href="#eg8">Animated plots</a> <!-- - [Annotate images](#eg10) -->
+</li>
+<li><a href="#eg11">Virtual Reality(VR)</a></li>
+<li><a href="#eg12">Spreadsheet</a></li>
 </ul>
 <p>Examples created with specific goals in mind</p>
 <ul>
@@ -152,7 +156,7 @@
 <div align="center">
 <p><img src="../articles/gif_images/example_4b_SVM_radial.gif" style="height:400px;"></p>
 </div>
-<p>SVM with radial kernal caught my attention, as I failed to predict what the shape would look like when I added a new point (can you?). There was something unusual, but I do not know what exactly. I only realise what that is after trying out different examples and staring at a gif for a good 5 minutes. Indeed interaction is not about graphics but about processes, the ones that adopt interactivity and visual description (in contrast to static plot and verbal description), the one that helps you discover and think.</p>
+<p>SVM with radial kernal caught my attention, as I failed to predict what the shape would look like when I added a new point (can you?). There was something unusual, but I do not know what exactly. I only realise what that is after trying out different examples and staring at a gif for a good 5 minutes. Indeed interaction is not about graphics but about processes – the ones that adopt interactivity and visual description (in contrast to static plot and verbal description) and the one that helps you discover and think.</p>
 <hr>
 </div>
 </div>
@@ -195,6 +199,27 @@
 <p><img src="../articles/gif_images/example_8.gif" style="width:49.0%"><img src="../articles/gif_images/example_8b.gif" style="width:49.0%"></p>
 </div>
 <p>Animatied plots are a common and convenient way to illustrate ideas. So I created these two apps.</p>
+<!-- ### Annotate images {#eg10} -->
+<hr>
+</div>
+<div id="eg11" class="section level3">
+<h3 class="hasAnchor">
+<a href="#eg11" class="anchor"></a>Virtual Reality(VR)</h3>
+<div>
+<p><img src="../articles/gif_images/vr.gif" style="width:49.0%"><img src="../articles/gif_images/vr2.gif" style="width:49.0%"></p>
+</div>
+<p>Apparently there is an easy-to-use VR javascript library, <a href="https://aframe.io/">A-frame</a>, which can be ported to R easily using jsReact. To view the page using VR goggle, one simply needs to connect your phone to the same network then uses any browser to access the host computer <code>ip:port</code> address.</p>
+<hr>
+</div>
+<div id="eg12" class="section level3">
+<h3 class="hasAnchor">
+<a href="#eg12" class="anchor"></a>Spreadsheet</h3>
+<div align="center">
+<div class="figure">
+<img src="../articles/gif_images/spreadsheet.gif" style="width:49.0%">
+</div>
+</div>
+<p>Spreadsheet is still the common way (for non-programmers) to do business analysis. It is no surprise there is a JS library for it already: <a href="https://bossanova.uk/jexcel">jExcel</a>. Porting this to R takes less than an hour (see ‘snippets’ folder on github). Further development can be made, e.g. add a button to save the csv to dataframe directly to R. Quite simple to do, but not useful to me. Someday maybe.</p>
 <hr>
 </div>
 </div>

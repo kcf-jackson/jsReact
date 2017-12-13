@@ -90,7 +90,8 @@
     <p>A generic function to produce html 5 elements</p>
     
 
-    <pre class="usage"><span class='fu'>html5_elements</span>(<span class='no'>my_html</span>, <span class='no'>into</span>, <span class='kw'>insert</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>tag</span>, <span class='no'>text</span>, <span class='kw'>close_tag</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>html5_elements</span>(<span class='no'>my_html</span>, <span class='no'>into</span>, <span class='kw'>insert</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>tag</span>, <span class='no'>text</span>, <span class='kw'>close_tag</span> <span class='kw'>=</span> <span class='no'>T</span>,
+  <span class='kw'>collapse</span> <span class='kw'>=</span> <span class='no'>T</span>, <span class='no'>...</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -118,6 +119,10 @@
     <tr>
       <th>close_tag</th>
       <td><p>T or F. Should closing tag be included?</p></td>
+    </tr>
+    <tr>
+      <th>collapse</th>
+      <td><p>T or F. Whether or not to collapse the script into a single line.</p></td>
     </tr>
     <tr>
       <th>...</th>

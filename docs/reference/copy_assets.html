@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Add Javascript from link — add_script_from_link • jsReact</title>
+<title>Copy assets to target directory — copy_assets • jsReact</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -83,29 +83,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Add Javascript from link</h1>
+    <h1>Copy assets to target directory</h1>
     </div>
 
     
-    <p>Add Javascript from link</p>
+    <p>This is needed when one needs to serve local file to RStudio viewer.</p>
     
 
-    <pre class="usage"><span class='fu'>add_script_from_link</span>(<span class='no'>my_html</span>, <span class='no'>link</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>copy_assets</span>(<span class='no'>path</span>, <span class='no'>target_dir</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>my_html</th>
-      <td><p>html in a vector of strings; output from 'create_html'.</p></td>
+      <th>path</th>
+      <td><p>character_string; path to the source file / folder.</p></td>
     </tr>
     <tr>
-      <th>link</th>
-      <td><p>weblink to the JS file</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other parameter passing to tag attributes.</p></td>
+      <th>target_dir</th>
+      <td><p>character_string; path to the target folder.</p></td>
     </tr>
     </table>
     
