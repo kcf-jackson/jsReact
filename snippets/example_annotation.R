@@ -8,7 +8,7 @@ my_html <- create_html() %>%
   add_script(
     "
     function preload() {
-      var src = 'https://cdn.rawgit.com/rmfisher/react-measurements/863d8563/src/demo/images/pollen.jpg?raw=true';
+      var src = 'https://cdn.jsdelivr.net/gh/rmfisher/react-measurements@863d8563/src/demo/images/pollen.jpg?raw=true';
       img = loadImage(src);
     }
     function setup() {

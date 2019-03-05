@@ -3,7 +3,7 @@ library(magrittr)
 library(jsReact)
 
 my_html <- create_html() %>%
-  add_script_from_link("https://rawgit.com/karpathy/tsnejs/master/tsne.js") %>%
+  add_script_from_link("https://cdn.jsdelivr.net/gh/karpathy/tsnejs@master/tsne.js") %>%
   add_js_library("plotly") %>%
   add_style_from_link("https://fonts.googleapis.com/icon?family=Material+Icons") %>%
   add_title("Interactive t-SNE in R") %>%
